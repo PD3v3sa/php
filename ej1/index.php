@@ -1,5 +1,5 @@
 
 
 <?php
-  print "adios";
+  print "hola";
 ?>
