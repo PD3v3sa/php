@@ -4,7 +4,7 @@ title: PHP
 titlepage: true
 subtitle: Elementos básicos del lenguaje
 author:
-- Pepe Devesa
+- Pepe
 lang: va
 
 # portada
@@ -137,7 +137,8 @@ Para este ejercicio, crea un documento en esta carpeta llamado **info_basica.php
 
 Prueba la página en un navegador y echa un vistazo al código fuente, intentando detectar qué contenidos HTML se han generado desde PHP.
 :::
- # Variables y tipos de datos
+
+## Variables y tipos de datos
   
 Como en todo lenguaje de programación, las variables en PHP nos van a servir para almacenar información, de manera que, además de tenerla disponible, podemos modificarla o cambiarla por otra durante el tiempo de ejecución de la aplicación web.
 
@@ -154,6 +155,48 @@ Ejemplos de nombres de variables válidos son: `$nombre` , `$primer_apellido` , 
         echo $edad;
     ?>
 ```
+
+:::important
+
+**Para declarar una variable usando la sintaxis básica, sigue estos pasos:**
+
+ * Elige un nombre que sea descriptivo y fácil de entender. Ten en cuenta las siguientes reglas:
+    * Cada identificador de la variable debe ser único dentro de un programa.
+    * Evita usar palabras claves reservadas por el lenguaje de programación, por ejemplo, var, function, if, for, while, etc.
+    * El nombre puede incluir letras, caracteres ($, # y @) y números, pero no puede empezar con un número.
+    * Los nombres de las variables no pueden empezar ni terminar con un punto.
+    * Las variables no permiten espacios entre palabras. Para separar palabras en el nombre, usa el guión bajo (_) o cambia de letra minúscula a mayúscula.
+* No es correcto:
+
+   * ~~$var1, $var2,...~~ 
+   * ~~$Elem1, $Elem2...~~
+    
+:::
+
+## Variables variables
+Una peculiaridad de PHP es la posibilidad de disponer de variables de tipo variable. Por ejemplo, en el siguiente código:
+
+````php
+$varname = 'barras';
+$$varname = 5; // Equivale a $barras = 5
+````
+¿Qué utilidades puede tener esto? El bilingüismo
+
+````php
+<?php
+    $texto_va = "Benvingut";
+    $texto_en = "Welcome";
+    $idioma = "va";
+    $texto = "texto_" . $idioma;
+    echo $$texto;
+?>
+````
+:::tip
+Ejercicio 4:
+
+Crea una página en la carpeta de ejercicios llamada **curriculum.php** donde, utilizando variables variables, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), tanto en español,valencià como en otro idioma que elijas.
+:::
+
 ## Comprobar el estado de las variables
 Es posible que, en algún momento de la ejecución del programa, una variable no tenga un valor definido, o queramos eliminar el valor que tiene. Para ello tenemos algunas instrucciones útiles:
 
@@ -528,7 +571,9 @@ switch($variable)
 ```
 ## Break y Continue
 Como en muchos otros lenguajes, las instrucciones `break` y `continue` pueden usarse en el interior del cuerpo de los bucles para lograr este comportamiento:
+
 * **break**. “Rompe” el bucle, es decir, se sale del bucle y continúa ejecutando el programa por la instrucción que haya inmediatamente después del mismo.
+
 * **continue**. Deja de ejecutar la iteración actual y vuelve al comienzo del bucle para iniciar una nueva iteración.
 
 ## Estructuras repetitivas o bucles
@@ -624,6 +669,8 @@ Este otro va del 10 al 0:
 
 10-9-8-7-6-5-4-3-2-1-0
 :::
+
+
 
 # Arrays
 Las tablas o arrays nos permiten almacenar varios datos en una sola variable, de forma que podemos acceder a esos datos utilizando distintos tipos de índices. En PHP existen tres tipos de arrays: 
@@ -769,3 +816,165 @@ $tabla2[0]['dni'] = '11111111A';
 $tabla2[0]['idiomas'][0] = 'inglés'; 
 $tabla2[0]['idiomas'][1] = 'valenciano'; 
 ````
+## Funciones para arrays
+PHP dispone de varias funciones útiles a la hora de manipular arrays. Algunas de las más habituales son:
+
+* `count(array)` nos indica cuántos elementos tiene el array. Es útil para utilizarlo en bucles y saber cuántas repeticiones podemos hacer sobre el array
+
+* `sort(array) y rsort(array)` ordenan y reindexan un array numérico (la segunda en orden decreciente).
+
+* `asort(array) y arsort(array)` ordenan y reindexan un array asociativo (la segunda en orden decreciente), por sus valores.
+
+* `ksort(array) y krsort(array)` ordenan un array asociativo por sus claves (la segunda en orden decreciente).
+
+* `usort(array, funcion)` ordena un array según la función que defina el usuario como segundo parámetro.
+
+* `array_filter(array, funcion_filtrado)` devuelve un array con los elementos del array original (pasado como parámetro) que pasan la función de filtrado indicada.
+
+* `array_sum($array)` devuelve la suma de todos los elementos en el array.
+
+* `print_r($array):` muestra el contenido de todo el $array. Si queremos mostrar el contenido con un formato determinado, hemos de recorrer el array con foreach.
+
+* `var_dump($mixed):` muestra el contenido del elemento recibido. Muestra más información que print_r.
+
+* `$elem = array_pop($array):` elimina el último $elemento
+
+* `array_push($array, $elem):` añade un $elemento al final
+
+* `$booleano = in_array($elem, $array):` averigua si $elem está en el $array.
+
+* `$claves = array_keys($array):` devuelve las claves del $array asociativo
+
+* `isset($array[elemento]):` indica si existe/tiene valor elemento dentro del array
+
+* `unset($array[elemento]):` elimina el elemento del array (deja un hueco).
+
+* `array_values($array):` devuelve todos los valores del array array e indexa numéricamente el array.
+
+* `array_search($valor,$array)` Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito.
+
+:::note
+
+   Artículos para profundizar en el uso de arrays
+   
+   * Un artículo muy completo (en inglés) de [Cómo trabajar con arrays en PHP de la manera correcta.](https://code.tutsplus.com/working-with-php-arrays-in-the-right-way--cms-28606t)
+   
+   * Otro artículo recomendable (en inglés) es [Cómo ordenar arrays en PHP](https://code.tutsplus.com/how-to-sort-arrays-in-php--cms-32313t)
+
+:::
+
+
+
+# Gestión de errores
+
+En ocasiones podemos hacer operaciones o utilizar funciones que pueden provocar un error grave en la aplicación. Por ejemplo, una división por cero, o una lectura de un fichero que no existe. Si no controlamos esos errores, se puede “disparar” un mensaje de error en el programa que muestre su mal funcionamiento, o lo que es peor, que revele algún dato privado, como la ubicación de un fichero en el servidor, o algún nombre de usuario o contraseña. Para evitar que ciertas operaciones que puedan causar errores alteren de esa forma el funcionamiento de la aplicación web, existen varias alternativas.
+
+## Uso del operador @
+
+Cuando se antepone el símbolo de arroba @ ante cualquier expresión, cualquier mensaje de error que pueda generar esa expresión será ignorado.
+
+````php
+$division = @($num1/$num2);
+````
+
+````php
+<?php
+$miArchivo = @file('archivo_que_no_existe') or die("No se ha podido abrir");
+
+// Funciona también si por ejemplo se intenta acceder al key de un array que no existe:
+$valor = @$array[$key] or die("No se ha podido abrir");
+?>
+````
+## Uso de excepciones
+
+Vamos a ver un ejemplo sencillo con una función que calcula el área de un cuadrado:
+
+````php
+$miLado = -3;
+function areaCuadrado($lado){
+    if ($lado < 0){
+        // Lanzamos una excepción
+        throw new Exception ('Debes insertar un número positivo');
+    } else {
+        return $lado * $lado;
+    }
+}
+areaCuadrado($miLado);
+// Devuelve: Uncaught exception 'Exception' with message 'Debes insertar un número positivo'
+````
+Hemos lanzado una `excepción` y el código detiene su ejecución ya que se produce un `error fatal`. Podemos en cambio capturar ese error y continuar con el script:
+
+````php
+// Definimos un array con los lados de los cuadrados que queremos calcular
+$misLados = array(2, -6, 4);
+// Creamos un loop para calcular el área de cada cuadrado
+foreach ($misLados as $lado){
+    try {
+        echo "El área del cuadrado es: " . areaCuadrado($lado) . "<br>";
+    } catch (Exception $e) {
+        echo 'Ha habido una excepción: ' . $e->getMessage() . "<br>";
+    }
+}
+/*
+Devuelve:
+El área del cuadrado es: 4
+Ha habido una excepción: Debes insertar un número positivo
+El área del cuadrado es: 16
+*/
+````
+Ahora en lugar de parar el script, continúa y captura la excepción.
+
+También podemos usar la instrucción `throw new Exception($mensaje)` para provocar una excepción en el caso de que alguna comprobación que hagamos nos dé un resultado incorrecto. Así provocamos un `salto al catch`, o un mensaje de error en la web si no lo hacemos dentro de un try. Se utiliza también para algunas funciones que no provocan excepciones por sí mismas (como por ejemplo, file_get_contents), para provocar el error nosotros de antemano con alguna comprobación previa.
+
+````php
+try
+{
+    if (!file_exists("fich1.txt"))
+    {
+        throw new Exception("El fichero de entrada no existe");
+    }
+    $contenido = file_get_contents("fich1.txt");
+    file_put_contents("fich2.txt", $contenido);
+} catch (Exception $e) {
+    echo 'Se ha producido un error: ' . $e->getMessage();
+}
+````
+# Ejercicios con arrays
+
+:::important
+  Crear una carpeta en github con el nombre `array` y guardarlos ahí. Es conveniente que actaulizéis el archivo **README.md** con los contenidos que vayáis creando.
+:::
+
+### Array1.php 
+Rellena un array con 50 números aleatorios comprendidos entre el 0 y el 99, y luego muéstralo en una lista desordenada. Para crear un número aleatorio, utiliza la función rand(inicio, fin) => `$num = rand(0, 99)`
+
+* Como mejora comprobar que los números no existan.
+* Ordenar la salida del vector.
+* Calcula:
+    * El mayor
+    * El menor
+    * La media
+
+### arrayAsociativo.php
+Rellena un array de 100 elementos de manera aleatoria con valores `M` o `F` (por ejemplo ["M", "M", "F", "M", ...]). Una vez completado, vuelve a recorrerlo y calcula cuantos elementos hay de cada uno de los valores almacenando el resultado en un array asociativo **['M' => 44, 'F' => 66]** (no utilices variables para contar las M o las F). Finalmente, muestra el resultado por pantalla
+
+### Personas.php
+Mediante un array bidimensional, almacena el nombre, altura y email de 5 personas. Para ello, crea un array de personas, siendo cada persona un array asociativo: 
+**[ ['nombre'=>'Aitor', 'altura'=>182, 'email'=>'aitor@correo.com'],[…],… ]** Posteriormente, recorre el array y muéstralo en una tabla HTML.
+
+### Garaje.php
+Crea una página llamada `coches.php`. Define dentro un array bidimensional mixto donde:
+
+La primera dimensión sea asociativa. Aquí pondremos matrículas de coches.
+La segunda dimensión será numérica. En cada casilla guardaremos **la marca, modelo y número de puertas del coche** en cuestión. Por ejemplo, el coche con matrícula “111BCD” puede ser un “Ford” (casilla 0), modelo “Focus” (casilla 1) de 5 puertas (casilla 2).
+Rellena el array con al menos 3 o 4 coches, y después utiliza las estructuras adecuadas para recorrerlo mostrando los datos de los coches ordenados por matrícula.
+
+### arrayBidimensional.php
+Rellena un array bidimensional de 6 filas por 9 columnas con números aleatorios comprendidos entre 100 y 999 (ambos incluidos). Todos los números deben ser distintos, es decir, no se puede repetir ninguno.
+Muestra a continuación por pantalla el contenido del array de tal forma que:
+
+* La columna del máximo debe aparecer en **azul**.
+
+* La fila del mínimo debe aparecer en **verde**.
+
+* El resto de números deben aparecer en **negro**.
