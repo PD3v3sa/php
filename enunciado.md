@@ -60,9 +60,15 @@ pandoc-latex-environment:
 
 
 ...
-# Calificación de los TFG
 
-Se os pasa un script con los datos de los alumnos de un `IES...` el ejercicio consiste en hacer una aplicación para que cada profesor del tribunal ponga su *nota/calificación* sin saber la de los demás profesores. 
+
+:::important
+    Para superar la prueba hay que sacar una nota mayor o igual a 4 para sacar la media de los dos ejercicios.
+:::
+
+# Ejercicio en PHP. Calificación de los TFG 
+
+Se os pasa un script con los datos de los alumnos de un `IES...` el ejercicio consiste en hacer una aplicación *(CRUD)* para que cada profesor del tribunal ponga su *nota/calificación* sin saber la de los demás profesores. 
 
 Expecificación:
 
@@ -107,3 +113,45 @@ $usuarios = [
 \end{figure}
 
 * `Cerrar sesion` cierra la sesiones y nos redirecciona a la pantalla de inicio
+
+# Ejercicio en Laravel. 
+
+Realizar un *CRUD* para la gestión de productos. Para ello tendréis que crear la tabla desde una migración con los siguientes campos:
+
+````php
+ public function up(): void
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('code')->unique();
+            $table->string('name');
+            $table->integer('quantity');
+            $table->decimal('price', 8, 2);
+            $table->text('description')->nullable();
+            $table->timestamps();
+        });
+    }
+`````
+
+Como podéis ver en las imagenes siguientes ,en la pantalla de inicio, los datos son random, creados con un *seeder* y *faker*.
+
+
+\begin{figure}
+\centering
+\subfigure[Pantalla de inicio]{\includegraphics[width=1\linewidth]{./img/Lini.png}}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfigure[Añadir producto]{\includegraphics[width=1\linewidth]{./img/Ladd.png}}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfigure[Editar producto]{\includegraphics[width=1\linewidth]{./img/Ledit.png}}
+\end{figure}
+
+\begin{figure}
+\centering
+\subfigure[Actualizar producto]{\includegraphics[width=1\linewidth]{./img/Lupdate.png}}
+\end{figure}
