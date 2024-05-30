@@ -1,6 +1,8 @@
 <?php
+
 $nombre = $_REQUEST["nombre"];
 $apellido =$_REQUEST["apellido"];
+var_dump($_REQUEST);
 
     if(empty($nombre)){
       $nombre="Anónimo";
