@@ -853,6 +853,16 @@ PHP dispone de varias funciones útiles a la hora de manipular arrays. Algunas d
 
 * `array_search($valor,$array)` Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito.
 
+* `list(var1,var2,...)` asigna los elementos del array a las variables.
+
+````php
+    <?php
+        $my_array = array("Dog","Cat","Horse");
+
+        list($a, $b, $c) = $my_array;
+        echo "I have several animals, a $a, a $b and a $c.";
+    ?>
+````
 :::note
 
    Artículos para profundizar en el uso de arrays

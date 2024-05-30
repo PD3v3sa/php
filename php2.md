@@ -210,7 +210,7 @@ function sumaParametros() {
 echo sumaParametros(1, 5, 9); // 15
 ?>
 ````
-Desde PHP 5.6, se puede utilizar el operador `...` (variadics) el cual "disfraza" los parámetros como un array:
+Desde PHP 5.6, se puede utilizar el operador **... (variadics)** el cual "disfraza" los parámetros como un array:
 ````php
 function sumaParametrosMejor(...$numeros) {
     if (count($numeros) == 0) {
@@ -326,6 +326,34 @@ include("pie.html");
 ?>
 
 ````
+
+## Separar la lógica de la presentación
+Cuando estamos programando, siempre tenemos que hacer que cada fichero, clase, función ... se encargue de una sola cosa. La más clara es separamos la lógica del programa (en nuestro caso en *php*) de la presentación al usuario (majoritariament con código *HTML*). Para poder separar estas dos funciones hacen falta sentencias anteriores para incluir ficheros.
+````php
+fruites.php
+<?php
+
+$color = 'verde';
+$fruta = 'manzana';
+include('fruites.view.php')
+
+?>
+`````
+````php
+fruites.view.php
+
+<html>
+<head>
+<title>Fruites</title>
+</head>
+<body>
+	<h3>
+ 		<?php"Una $fruta $color" ?> 
+ 	</h3>		
+</body>
+</html>
+````
+
 # Funciones predefinidas
 El lenguaje ofrece un abanico de funciones ya definidas, agrupadas por su funcionalidad: [https://www.php.net/manual/es/funcref.php](https://www.php.net/manual/es/funcref.php)
 
@@ -526,63 +554,6 @@ $esCorrecta = checkdate(15, 11, 2014);
 ````php
 $fecha = strtotime("21/12/2013");  
 ````
-# Ejercicios
-
-### parametrosVariables.php
-
-Crea las siguientes funciones:
-
-Una función que devuelva el mayor de todos los números recibidos como parámetro variables: 
-
-*function mayor(): int*. Utiliza las funciones *func_get_args()*, *etc*... 
-**No puedes usar la función max()**.
-
-### comprueba_hora.php
-
-Crea una variable de texto con una hora en ella (por ejemplo, *"21:30:12"*), y luego procésala para extraer por separado la hora, el minuto y el segundo, y comprobar si es una hora válida. 
-Por ejemplo, la hora anterior sí debería ser válida, pero si ponemos *"12:63:11"* no debería serlo, porque 63 no es un minuto válido.
-
-### matematicas.php: 
-Añade las siguientes funciones:
-
-* `digitos(int $num): int` → devuelve la cantidad de dígitos de un número.
-* `digitoN(int $num, int $pos): int` → devuelve el dígito que ocupa, empezando por la izquierda, la posición $pos.
-* `quitaPorDetras(int $num, int $cant): int` → le quita por detrás (derecha) $cant dígitos.
-* `quitaPorDelante(int $num, int $cant): int` → le quita por delante (izquierda) $cant dígitos.
-
-### login.php
-Vamos a simular un formulario de acceso:
-
-`login.php:` el formulario de entrada, que solicita el usuario y contraseña.
-`compruebaLogin.php:` recibe los datos y comprueba si son correctos (los usuarios se guardan en un array asociativo) pasando el control mediante el uso de include a:
-
-**ok.php:** El usuario introducido es correcto
-
-**ko.php:** El usuario es incorrecto. Informar si ambos están mal o solo la contraseña. Volver a mostrar el formulario de acceso.
-
-## Funciones Predefinidas
-
-### fraseImpares.php: 
-Lee una frase y devuelve una nueva con solo los caracteres de las posiciones impares.
-
-### analizador.php: 
-A partir de una frase con palabras sólo separadas por espacios, devolver:
-
-* Letras totales y cantidad de palabras
-
-* Una línea por cada palabra indicando su tamaño
-
-`Nota:` no se puede usar str_word_count
-
-### analizadorWC.php: 
-Investiga que hace la función str_word_count, y vuelve a hacer el ejercicio.
-
-### cani.php: 
-`EsCrIbE uNa FuNcIóN qUe TrAnSfOrMe UnA cAdEnA eN cAnI.`
-
-### palindromo.php: 
-Escribe una función que devuelva un booleano indicando si una palabra es palíndroma (se lee igual de izquierda a derecha que de derecha a izquierda, por ejemplo, `"ligar es ser agil"`).
-
 # Funciones de Fichero
 A veces nos puede resultar útil leer un fichero de texto o escribir información en él. Existen multitud de funciones en PHP para abrir un fichero, leerlo línea a línea, o leer o guardar un conjunto de bytes… Vamos a ver aquí sólo algunas de las funciones más útiles para manejo de ficheros.
 
@@ -634,3 +605,67 @@ Modos de apertura de ficheros
 * `c:` Apertura para escritura. Si no existe se crea. Si existe no se sobreescribe ni da ningún error. Puntero al principio del archivo.
 * `c+:` Apertura para lectura y escritura. Mismo comportamiento que C.
 * `b:` Cuando se trabaja con archivos binarios como jpg, pdf, png y demás. Se suele colocar al final del modo, es decir rb, r+b, x+b, wb...
+
+# Ejercicios
+
+### parametrosVariables.php
+
+Crea las siguientes funciones:
+
+Una función que devuelva el mayor de todos los números recibidos como parámetro variables: 
+
+*function mayor(): int*. Utiliza las funciones *func_get_args()*, *etc*... 
+**No puedes usar la función max()**.
+
+### comprueba_hora.php (Separar la lógica de la vista)
+
+Crea una variable de texto con una hora en ella (por ejemplo, *"21:30:12"*), y luego procésala para extraer por separado la hora, el minuto y el segundo, y comprobar si es una hora válida. 
+Por ejemplo, la hora anterior sí debería ser válida, pero si ponemos *"12:63:11"* no debería serlo, porque 63 no es un minuto válido.
+
+### matematicas.php: 
+Añade las siguientes funciones:
+
+* `digitos(int $num): int` → devuelve la cantidad de dígitos de un número.
+* `digitoN(int $num, int $pos): int` → devuelve el dígito que ocupa, empezando por la izquierda, la posición $pos.
+* `quitaPorDetras(int $num, int $cant): int` → le quita por detrás (derecha) $cant dígitos.
+* `quitaPorDelante(int $num, int $cant): int` → le quita por delante (izquierda) $cant dígitos.
+
+### login.php
+Vamos a simular un formulario de acceso:
+
+`login.php:` el formulario de entrada, que solicita el usuario y contraseña.
+`compruebaLogin.php:` recibe los datos y comprueba si son correctos (los usuarios se guardan en un array asociativo) pasando el control mediante el uso de include a:
+
+**ok.php:** El usuario introducido es correcto
+
+**ko.php:** El usuario es incorrecto. Informar si ambos están mal o solo la contraseña. Volver a mostrar el formulario de acceso.
+
+## Funciones Predefinidas
+
+### fraseImpares.php: 
+Lee una frase y devuelve una nueva con solo los caracteres de las posiciones impares.
+
+### analizador.php: 
+A partir de una frase con palabras sólo separadas por espacios, devolver:
+
+* Letras totales y cantidad de palabras
+
+* Una línea por cada palabra indicando su tamaño
+
+`Nota:` no se puede usar str_word_count
+
+### analizadorWC.php: 
+Investiga que hace la función str_word_count, y vuelve a hacer el ejercicio.
+
+### cani.php: 
+`EsCrIbE uNa FuNcIóN qUe TrAnSfOrMe UnA cAdEnA eN cAnI.`
+
+### palindromo.php: 
+Escribe una función que devuelva un booleano indicando si una palabra es palíndroma (se lee igual de izquierda a derecha que de derecha a izquierda, por ejemplo, `"ligar es ser agil"`).
+
+### CasasRuralesTelefonos.php
+Crea un programa llamado `CasasRuralesTelefonos.php` que cargue los datos de este archivo CSV de casas rurales de la provincia de Castellón. Queremos quedarnos con el *id*, *localidad*, *nombre* y *telefono* de las casas rurales que tengan un *teléfono definido*, descartando el resto. 
+El programa debe mostrar por pantalla el listado final procesado, y cuántas casas rurales *se han descartado* por tener datos nulos. 
+
+### plantillas.php
+Con el fichero `plantillas.csv` muestra en un tabla HTML la plantilla del Atlético de Madrid ordenada por dorsal.
