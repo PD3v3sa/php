@@ -60,6 +60,7 @@ pandoc-latex-environment:
 
 
 ...
+
 # Pròleg
 La `Programación Orientada a Objetos` (OOP, Object Oriented Programming) es un estilo de organizar el código que permite a los desarrolladores agrupar tareas similares en clases. Esto ayuda a que el código sea más fácil de mantener y a no repetirse (`DRY`, Don't Repeat Yourself).
 
