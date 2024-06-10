@@ -69,7 +69,7 @@ pandoc-latex-environment:
 Crea un programa llamado `curriculum.php` donde, utilizando variables variables, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), como podéis ver en el ejemplo.
 \begin{figure}
 \centering
-\subfigure[curriculum]{\includegraphics[width=0.5\linewidth]{./img/curriculum.png}}
+\subfigure[curriculum]{\includegraphics[width=0.7\linewidth]{./img/curriculum.png}}
 \end{figure}
 # trimestre.php
 Crear un formulario `trimestre.php` para introducir las calificacioes de los alumnos por trimestre y que nos muestre en una *tabla* las notas de todos los alumnos por trimestre y la *media*. Además tendréis de crear un botón para borrar los datos y poder introducir nuevos datos.
