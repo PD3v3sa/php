@@ -2,9 +2,9 @@
 # Metainformació del document
 title: PHP 
 titlepage: true
-subtitle: Enunciado Evaluación Extraordianaria
+subtitle: Enunciado Evaluación Extraordianaria 2024 DWES
 author:
-- Pepe
+- Pepe Devesa
 lang: va
 
 # portada
@@ -63,9 +63,16 @@ pandoc-latex-environment:
 
 
 :::important
-    * Debéis hacer la instalción tanto de XAMPP como del LARAVEL.
-    * Podéis utilizar los pdf's de clase.
-    * El uso de ChatGPT o similares será un 0 inmediato.
+* En el **/home/Public** de vuestro equipo esta la máquina `ubuntu.ova` 
+
+    * usuario: *ubuntu* passwd: *2024*
+    
+* Debéis hacer la instalación tanto de XAMPP como del LARAVEL
+    
+* Podéis utilizar los pdf's de clase.
+
+* El uso de ChatGPT o similares será un **0** inmediato.
+
 :::
 # curriculum.php (2 ptos.)
 Crea un programa llamado `curriculum.php` donde, utilizando _variables variables_, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), como podéis ver en el ejemplo.
@@ -81,7 +88,7 @@ Crear un formulario `trimestre.php` para introducir las calificacioes de los alu
 \end{figure}
 
 # BBDD. Calificación de los TFG (3 ptos).
-Se os pasa un script con los datos de los alumnos de un `IES...` el ejercicio consiste en hacer una aplicación *(CRUD)* para que cada profesor del tribunal ponga su *nota/calificación* sin saber la de los demás profesores. 
+Se os pasa un script _notas.sql_ con los datos de los alumnos de un `IES...` el ejercicio consiste en hacer una aplicación *(CRUD)* para que cada profesor del tribunal ponga su *nota/calificación* sin saber la de los demás profesores. Exepto el usuario _admin_ que podrá ver todas las notas pero no insertar.
 
 Expecificación:
 
