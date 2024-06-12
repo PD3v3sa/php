@@ -63,22 +63,24 @@ pandoc-latex-environment:
 
 
 :::important
-    Para hacer media en la prueba hay que sacar una nota mayor o igual a 4 en los dos ejercicios.
+    * Debéis hacer la instalción tanto de XAMPP como del LARAVEL.
+    * Podéis utilizar los pdf's de clase.
+    * El uso de ChatGPT o similares será un 0 inmediato.
 :::
-# curriculum.php
-Crea un programa llamado `curriculum.php` donde, utilizando variables variables, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), como podéis ver en el ejemplo.
+# curriculum.php (2 ptos.)
+Crea un programa llamado `curriculum.php` donde, utilizando _variables variables_, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), como podéis ver en el ejemplo.
 \begin{figure}
 \centering
 \subfigure[curriculum]{\includegraphics[width=0.7\linewidth]{./img/curriculum.png}}
 \end{figure}
-# trimestre.php
+# trimestre.php (2 ptos.)
 Crear un formulario `trimestre.php` para introducir las calificacioes de los alumnos por trimestre y que nos muestre en una *tabla* las notas de todos los alumnos por trimestre y la *media*. Además tendréis de crear un botón para borrar los datos y poder introducir nuevos datos.
 \begin{figure}
 \centering
 \subfigure[calificaciones]{\includegraphics[width=0.5\linewidth]{./img/ses_media.png}}
 \end{figure}
 
-# BBDD. Calificación de los TFG 
+# BBDD. Calificación de los TFG (3 ptos).
 Se os pasa un script con los datos de los alumnos de un `IES...` el ejercicio consiste en hacer una aplicación *(CRUD)* para que cada profesor del tribunal ponga su *nota/calificación* sin saber la de los demás profesores. 
 
 Expecificación:
@@ -125,7 +127,7 @@ $usuarios = [
 
 * `Cerrar sesion` cierra la sesiones y nos redirecciona a la pantalla de inicio
 
-# Ejercicio en Laravel. 
+# Ejercicio en Laravel. (3 ptos)
 :::tip
 Subir el ejercicio a github y entregar el enlace.
 :::
