@@ -700,3 +700,4 @@ public static function toHtml(Persona $p): string {
     * Para los `Gerentes`, su sueldo se incrementa porcentualmente en base a su edad: *salario + salario*edad/100*
 
     * A la hora de saber si un empleado debe pagar impuestos, lo hará siempre y cuando tenga más de 21 años y dependa del valor de su sueldo.
+
