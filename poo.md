@@ -545,7 +545,7 @@ try{
 
 # Ejercicios
 
-## Clases.php 
+### Clases.php 
 
 Crea una página llamada clases.php con: 
 
@@ -564,7 +564,7 @@ Crea una página llamada clases.php con:
 
 Fuera de las clases, entre el código HTML de la página, crea un objeto de cada tipo (una Persona y un Estudiante), con los valores que quieras, llama después a algún setter de cada una para cambiar el valor de algún atributo, y finalmente llama a sus métodos Mostrar para que saquen la información de cada uno.
 
-## Player.php
+### Player.php
 
 Crea un clase **Player**, con los campos:
 
@@ -613,7 +613,7 @@ Importa el fichero y cargalo el Team de l'Atletic de Madrit y muestra la palntil
 \subfigure[Team]{\includegraphics[width=0.7\linewidth]{./img/team.png}}
 \end{figure}
 
-## class.articulo.php
+### class.articulo.php
 
 Crea dos clases,**Articulo** y **ArticuloRebajado** que será una subclase de Articulo.
 
@@ -674,3 +674,29 @@ object(ArticuloRebajado)[1]
 
 ````
 
+### Trabajadores
+Basandonse en el UML siguiente
+
+\begin{figure}
+\centering
+\subfigure[Trabajadores]{\includegraphics[width=0.3\linewidth]{./img/trabajador.png}}
+\end{figure}
+
+Crar el desarrollo en php teniendo en cuenta:
+
+* `Persona` es **clase abstracta** donde su método estático _toHtml(Persona $p)_ tenga que ser redefinido en todos sus hijos.
+````php
+public static function toHtml(Persona $p): string {
+        if ($p instanceof Empleado) {
+            // Aqui ya podemos acceder a las propiedades y métodos de Empleado
+        }
+    }
+````
+
+* `Trabajador` es una **clase abstracta** que almacena los _telefonos_ y donde _calcularSueldo_ es un método abstracto de manera que:
+
+    * El sueldo de un `Empleado` se calcula a partir de las horas trabajadas y lo que cobra por hora.
+
+    * Para los `Gerentes`, su sueldo se incrementa porcentualmente en base a su edad: *salario + salario*edad/100*
+
+    * A la hora de saber si un empleado debe pagar impuestos, lo hará siempre y cuando tenga más de 21 años y dependa del valor de su sueldo.
