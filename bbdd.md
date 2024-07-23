@@ -125,7 +125,6 @@ Además, con PDO podemos usar las excepciones con `try catch` para gestionar los
 
 ````php
 <?php
-
     $dsn = 'mysql:dbname=prueba;host=127.0.0.1';
     $usuario = 'usuario';
     $contraseña = 'contraseña';
@@ -136,7 +135,7 @@ Además, con PDO podemos usar las excepciones con `try catch` para gestionar los
     } catch (PDOException $e) {
         echo 'Falló la conexión: ' . $e->getMessage();
     }
-
+?>
 ````
 
 En primer lugar, creamos la conexión con la base de datos a través del constructor PDO pasándole la información de la base de datos.
