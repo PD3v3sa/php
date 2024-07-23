@@ -147,8 +147,8 @@ En segundo lugar, establecemos los parámetros para manejar las excepciones, en 
 * **PDO::ERRMODE_EXCEPTION** con este atributo obligamos a que lance excepciones, además de ser la opción más humana y legible que hay a la hora de controlar errores.
 
 Cualquier error que se lance a través de PDO, el sistema lanzará una **PDOException**.
-
-# Ejecución de instrucciones SQL(CRUD)
+# Consultas Preparadas
+## Insert(CRUD)
 
 Para ejecutar instrucciones SQL, seguiremos dos pasos:
  1. Preparamos la instrucción SQL a ejecutar (*SELECT, INSERT, UPDATE, DELETE*). Utilizaremos la instrucción `prepare` para ello.
@@ -233,8 +233,7 @@ $videojuegos = array ( "Done to Zen", "Belica", 23.6);
 
 $insercion->execute($videojuegos);
 ````
-## INSERT (Crear)
-Visto antriormente.
+
 ## READ (leer)
 
 ````php
@@ -326,7 +325,7 @@ $consulta = NULL;
 $pdo = NULL;
 ````
 # SQL Injection
-Vamos a modelar nuestra inyecciones SQL a parte de la tabla de videojuegos, tendfemos una tabala de usuarios como la siguiente:
+Vamos a modelar nuestra inyecciones SQL. A parte de la tabla de videojuegos, tendremos una tabala de usuarios como la siguiente:
 
 | Id 	| nombre   	| password 	| rol   	|
 |----	|----------	|----------	|-------	|
@@ -437,3 +436,46 @@ Vamos a mandar el siguiente payload `1' UNION SELECT database(), @@version, user
 \centering
 \subfigure[Información BBDD]{\includegraphics[width=1\linewidth]{./img/inject3.png}}
 \end{figure}
+
+Ahora si intenetamos hacer lo mismo con el objeto **PDO** podréis observar que controla y elimina las inyecciones SQL.
+
+````php
+$host = "localhost";
+$nombreBD = "videojuegos";
+$usuario = "root";
+$password = "";
+
+
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$nombreBD;charset=utf8",$usuario, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    
+} catch (PDOException $e) {
+    echo 'Falló la conexión: ' . $e->getMessage();
+}
+
+$input= $_GET['genero'];
+var_dump($input);
+$consulta = $pdo->prepare("SELECT titulo,genero,precio FROM videojuegos WHERE genero = :genero");// WHERE genero=:genero");
+$consulta->bindParam(':genero', $input);
+$consulta->execute();
+while($registro = $consulta->fetch())
+{
+    echo $registro['titulo']." ".$registro['genero']." ".$registro['precio']."<br>";
+}
+````
+
+# TRANSACCIONES
+Una transacción consiste en un conjunto de operaciones que tienen que realizarse de forma atómica. Es decir, o se realizan todas o ninguna.
+
+Por defecto *PDO* trabaja en manera `autocommit`, así se confirma de forma automática cada sentencia que ejecuta el servidor.
+
+Para trabajar con transacciones, PDO incorpora tres métodos:
+
+* **beginTransaction**. Deshabilita la manera autocommit y empieza una nueva transacción, que finalizará cuando ejecutas uno de los dos métodos siguientes.
+
+* **commit**. Confirma la transacción actual.
+
+* **rollback**. Revierte los cambios llevados a cabo en la transacción actual
+Una vez ejecutado un commit o un rollback, se volverá a la manera de confirmación automática
