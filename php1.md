@@ -687,6 +687,7 @@ Como el tipado es dinámico, nuestros arrays pueden contenedor datos de diferent
 
 ## Arrays numéricos
 Estos arrays podemos crearlos de tres formas posibles: 
+
 * Indicando entre paréntesis sus elementos, y anteponiendo la palabra `array`
 ````php
 $tabla = array('Uno', 'Dos', 'Tres');
