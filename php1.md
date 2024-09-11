@@ -192,7 +192,7 @@ $$varname = 5; // Equivale a $barras = 5
 ?>
 ````
 :::tip
-Ejercicio 4:
+**Ejercicio 2:**
 
 Crea una página en la carpeta de ejercicios llamada **curriculum.php** donde, utilizando variables variables, muestres parte de tu currículum (por ejemplo, un párrafo con tus estudios y otro con los idiomas que hablas), tanto en español,valencià como en otro idioma que elijas.
 :::
@@ -303,7 +303,7 @@ este ejemplo que calcula la longitud de una circunferencia:
 Aunque **no es obligatorio**, sí es bastante convencional que las constantes tengan todo su **nombre en mayúsculas**, para distinguirlas a simple vista de las variables (aunque, además, las variables en PHP empiezan por un dólar, y las constantes no).
 
 :::tip
-**Ejercicio 2:**
+**Ejercicio 3:**
 Crea una página en la carpeta de ejercicios llamada **area_circulo.php**. En ella, crea una variable `$radio` y ponle el valor 3.5. Según esa variable, calcula en otra variable el área del círculo (PI * $radio^2$), deberás definir la constante PI, y muestra por pantalla el texto **"El área del círculo es XX.XX"**, donde
 XX.XX será el resultado de calcular el área.
 :::
@@ -457,7 +457,7 @@ Existen, además, otros operadores que no hemos visto aquí, como operadores de 
 
 :::tip
 
-**Ejercicio 3:**
+**Ejercicio 4:**
 Intenta predecir qué resultado va a sacar por pantalla cada instrucción echo de este código PHP. Luego podrás comprobar si estabas en lo cierto poniendo el código en una página y probándolo en un navegador.
 
 ```php
@@ -541,14 +541,14 @@ else
 ```
 :::tip
 
-**Ejercicio 4**
+**Ejercicio 5**
 
 Crea una página llamada **prueba_if.php** en la carpeta de ejercicios del tema. Crea en ella dos variables llamadas `$nota1` y `$nota2`, y dales el valor de dos notas de examen cualesquiera (con decimales si quieres). Después, utiliza expresiones *if..else* para determinar qué nota es la mayor de las dos.
 :::
 
 :::tip
 
-**Ejercicio 5**
+**Ejercicio 6**
 
 Modifica el ejercicio anterior añadiendo una tercera nota `$nota3` , y determinando cuál de las 3 notas es ahora la mayor. Para ello, deberás ayudarte esta vez de la estructura if..elseif..else.
 :::
@@ -626,7 +626,7 @@ $numero++;
 
 :::tip
 
-**Ejercicio 6**
+**Ejercicio 7**
 
 Crea una página llamada contador.php en la carpeta de ejercicios del tema. Utiliza una estructura for para contar los números del 1 al 100 (separados por comas), y luego una estructura while para contar los números del 10 al 0 (una cuenta atrás, separada por guiones). 
 
@@ -654,7 +654,7 @@ if ($edad < 10=)
 ```
 :::tip
 
-**Ejercicio 7**
+**Ejercicio 8**
 
 Modifica el ejercicio anterior y añádele algún h1 y párrafos explicativos a la página, fuera del código PHP, explicando lo que se va a hacer. Por ejemplo, que te quede algo así:
 Al final debe quedarte algo como esto:
