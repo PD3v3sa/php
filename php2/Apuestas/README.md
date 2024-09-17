@@ -1,7 +1,7 @@
 
 ### Apuestas del Estado
 
-<img src="./img/loterias.png">
+<img src="../img/loterias.png">
 Queremos realizar una página en el servidor que me genere de forma aleatoria una apuesta de primitiva u otra de euromillones. Para realizar el script en PHP deberemos tener en cuenta que:  
 
 * `PRIMITIVA` Una apuesta de 6 números entre 49 posibles (del 1 al 49). 
@@ -10,7 +10,7 @@ Queremos realizar una página en el servidor que me genere de forma aleatoria un
 
 Además vamos a utilizar programación modular y para ello se nos proporciona el siguiente **DEM (Diagrama de Estructura de Módulos):**
 
-<img src="./img/apuestas.png">
+<img src="../img/apuestas.png">
 
 Deberemos implementar el código HTML con dos enlaces para `select_apuesta.html` que enlazarán a los scripts: 
 
@@ -20,4 +20,4 @@ Deberemos implementar el código HTML con dos enlaces para `select_apuesta.html`
 
 Intentaremos implementar cada módulo del DEM como una función en PHP de tal manera que aquellos que sean comunes a primitiva.php y euromillones.php los introduciremos en la librería `loteria.inc`. Un ejemplo, "cutre", de visualización final puede ser: 
 
-<img src="./img/apuestas2.png">
+<img src="../img/apuestas2.png">
