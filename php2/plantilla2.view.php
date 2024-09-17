@@ -1,4 +1,4 @@
-<?php include('plantilla.php'); ?>
+<?php include('plantillaCSV.php'); ?>
 <html>
 <head>
 <title>Plantilla Atlètic</title>
@@ -8,7 +8,7 @@
 	
  <h2>Plantilla de l'Atlètic de Madrid</h2>
  <table border='1'>
- <tr><th>Dorsal</th><th>Nom</th><th>Apellidos</th><th>Posicion</th></tr>
+ <tr><th>Dorsal</th><th>Nom</th><th>Equipo</th><th>Apellidos</th><th>Posicion</th></tr>
 
  <?php
         // Array con los nombres y dorsales de los jugadores
@@ -18,6 +18,7 @@
         foreach ($atletico as $jugador) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($jugador["Dorsal"]) . "</td>";
+            echo "<td>" . htmlspecialchars($jugador["Equipo"]) . "</td>";
             echo "<td>" . htmlspecialchars($jugador["Nombre"]) . "</td>";
 			echo "<td>" . htmlspecialchars($jugador["Apellidos"]) . "</td>";
             echo "<td>" . htmlspecialchars($jugador["Posicion"]) . "</td>";
