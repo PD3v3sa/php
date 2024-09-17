@@ -72,13 +72,11 @@ function mi_funcion()
    echo '<strong>En la función</strong>';
 }
 
-...
-
 mi_funcion(); //La llamada
 ````
 Notar que estos dos fragmentos de código pueden ir en bloques PHP diferentes. Por ejemplo, podemos definir las funciones al inicio del código PHP, y luego llamarlas después:
 
-```php
+````php
 <?php 
 
 function mi_funcion() { 
@@ -253,9 +251,7 @@ $anonimaConParametro = function($nombre) {
     echo "Hola ".$nombre;
 };
 $anonimaConParametro("Salvador");
-
 ?>
-
 ````
 Tenéis más información sobre funciones anónimas y flecha en el siguiente artículo (en inglés): [Funciones anónimas y flecha en PHP](https://code.tutsplus.com/anonymous-and-arrow-functions-in-php--cms-36725t)
 
@@ -272,7 +268,7 @@ require(archivo); / require_once(archivo);
 * Las funciones **once** sólo `se cargan una vez`, si ya ha sido incluida previamente, **no** lo vuelve a hacer, evitando bucles.
 
 Por ejemplo, colocamos las funciones en el archivo `biblioteca.php`:
-```php
+````php
 <?php
 function suma(int $a, int $b) : int {
     return $a + $b;
@@ -283,7 +279,7 @@ function resta(int $a, int $b) : int {
 }
 ?>
 
-```
+````
 Y posteriormente en otro archivo:
 ````php
 <?php 
@@ -577,7 +573,8 @@ if (file_exists($fichero))
 ````
 La funcion `fopen()` desde PHP podemos abrir archivos que se encuentren en nuestros servidor o una URL.
 
-A esta función hay que pasarle 2 parámetros; el nombre del archivo que queremos abrir y el modo en el que se abrirá
+A esta función hay que pasarle 2 parámetros; el nombre del archivo que queremos abrir y el modo en el que se abrirá. 
+La función devuelve TRUE o FALSE en función de si se ha podido acceder o no.
 
 
 ````php
@@ -669,3 +666,32 @@ El programa debe mostrar por pantalla el listado final procesado, y cuántas cas
 
 ### plantillas.php
 Con el fichero `plantillas.csv` muestra en un tabla HTML la plantilla del Atlético de Madrid ordenada por dorsal.
+
+### Apuestas del Estado
+\begin{figure}
+\centering
+\subfigure[]{\includegraphics[width=0.5\linewidth]{./img/loterias.png}}
+\end{figure}
+Queremos realizar una página en el servidor que me genere de forma aleatoria una apuesta de primitiva u otra de euromillones. Para realizar el script en PHP deberemos tener en cuenta que:  
+
+* `PRIMITIVA` Una apuesta de 6 números entre 49 posibles (del 1 al 49). 
+
+* `EUROMILLONES` Una apuesta de 5 números entre 50 posibles (del 1 al 50) más 2 estrellas de entre 9 posibles (del 1 al 9). 
+
+Además vamos a utilizar programación modular y para ello se nos proporciona el siguiente **DEM (Diagrama de Estructura de Módulos):**
+\begin{figure}
+\centering
+\subfigure[DEM]{\includegraphics[width=0.5\linewidth]{./img/apuestas.png}}
+\end{figure}
+
+Deberemos implementar el código HTML con dos enlaces para `select_apuesta.html` que enlazarán a los scripts: 
+
+* `primitiva.php` encargado de mostrar una apuesta ordenada de lotería primitiva. Implementando los módulos del DEM para primitiva. 
+
+* `euromillones.php` encargado de mostrar una apuesta ordenada de euromillones. Implementando los módulos del DEM para euromillones. 
+
+Intentaremos implementar cada módulo del DEM como una función en PHP de tal manera que aquellos que sean comunes a primitiva.php y euromillones.php los introduciremos en la librería `loteria.inc`. Un ejemplo, "cutre", de visualización final puede ser: 
+\begin{figure}
+\centering
+\subfigure[Ejemplo]{\includegraphics[width=0.5\linewidth]{./img/apuestas2.png}}
+\end{figure}
