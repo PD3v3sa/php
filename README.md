@@ -23,6 +23,7 @@ Además vamos a utilizar programación modular y para ello se nos proporciona el
 \centering
 \subfigure[DEM]{\includegraphics[width=0.5\linewidth]{./img/apuestas.png}}
 \end{figure}
+<img src="./img/apuestas.png">
 
 Deberemos implementar el código HTML con dos enlaces para `select_apuesta.html` que enlazarán a los scripts: 
 
