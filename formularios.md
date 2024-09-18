@@ -421,3 +421,13 @@ Crea un formulario(`utiliza bootstrap`) que solicite:
 Crea un formulario que permita subir unicamente imágenes (comprueba la propiedad type del archivo subido). Si el usuario selecciona otro tipo de archivos, se le debe informar del error y permitir que suba un nuevo archivo.
 En el caso de subir el tipo correcto, visualizar la imagen durante 5 segundos,con la ruta y nombre, tamaño de anchura y altura y redirecciona al formulario.
 También hay que crear un enlace para mostrar el listado de todas las imagenes subidas.(analiza/estudia el método `scandir()`).
+
+### login.php
+Vamos a simular un formulario de acceso:
+
+`login.php:` el formulario de entrada, que solicita el usuario y contraseña.
+`compruebaLogin.php:` recibe los datos y comprueba si son correctos (los usuarios se guardan en un array asociativo) pasando el control mediante el uso de include a:
+
+**ok.php:** El usuario introducido es correcto
+
+**ko.php:** El usuario es incorrecto. Informar si ambos están mal o solo la contraseña. Volver a mostrar el formulario de acceso.

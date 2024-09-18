@@ -603,6 +603,7 @@ Modos de apertura de ficheros
 * `c+:` Apertura para lectura y escritura. Mismo comportamiento que C.
 * `b:` Cuando se trabaja con archivos binarios como jpg, pdf, png y demás. Se suele colocar al final del modo, es decir rb, r+b, x+b, wb...
 
+
 # Ejercicios
 
 ### parametrosVariables.php
@@ -626,16 +627,6 @@ Añade las siguientes funciones:
 * `digitoN(int $num, int $pos): int` → devuelve el dígito que ocupa, empezando por la izquierda, la posición $pos.
 * `quitaPorDetras(int $num, int $cant): int` → le quita por detrás (derecha) $cant dígitos.
 * `quitaPorDelante(int $num, int $cant): int` → le quita por delante (izquierda) $cant dígitos.
-
-### login.php
-Vamos a simular un formulario de acceso:
-
-`login.php:` el formulario de entrada, que solicita el usuario y contraseña.
-`compruebaLogin.php:` recibe los datos y comprueba si son correctos (los usuarios se guardan en un array asociativo) pasando el control mediante el uso de include a:
-
-**ok.php:** El usuario introducido es correcto
-
-**ko.php:** El usuario es incorrecto. Informar si ambos están mal o solo la contraseña. Volver a mostrar el formulario de acceso.
 
 ## Funciones Predefinidas
 

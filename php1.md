@@ -854,7 +854,13 @@ PHP dispone de varias funciones útiles a la hora de manipular arrays. Algunas d
 
 * `array_search($valor,$array)` Busca un valor determinado en un array y devuelve la primera clave correspondiente en caso de éxito.
 
+* `$header = array_shift($datos);` Quita un elemento del principio del array. _CSV_
+
+* `array_combine($header, $row);` Crea un nuevo array, usando una matriz para las claves y otra para sus valores. Asociativo. _CSV_
+
 * `list(var1,var2,...)` asigna los elementos del array a las variables.
+
+
 
 ````php
     <?php
