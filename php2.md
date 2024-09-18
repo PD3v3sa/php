@@ -651,12 +651,16 @@ Investiga que hace la función str_word_count, y vuelve a hacer el ejercicio.
 ### palindromo.php: 
 Escribe una función que devuelva un booleano indicando si una palabra es palíndroma (se lee igual de izquierda a derecha que de derecha a izquierda, por ejemplo, `"ligar es ser agil"`).
 
+
+
+### plantillas.php
+* Con el fichero `plantillas.csv` muestra en un tabla HTML su contenido.
+    * Muestra solo El Dorsal, Nombre, Apellidos, posicion y Equipo.
+    * Muestra la plantilla del Atlético de Madrid ordenada por dorsal.
+
 ### CasasRuralesTelefonos.php
 Crea un programa llamado `CasasRuralesTelefonos.php` que cargue los datos de este archivo CSV de casas rurales de la provincia de Castellón. Queremos quedarnos con el *id*, *localidad*, *nombre* y *telefono* de las casas rurales que tengan un *teléfono definido*, descartando el resto. 
 El programa debe mostrar por pantalla el listado final procesado, y cuántas casas rurales *se han descartado* por tener datos nulos. 
-
-### plantillas.php
-Con el fichero `plantillas.csv` muestra en un tabla HTML la plantilla del Atlético de Madrid ordenada por dorsal.
 
 ### Apuestas del Estado
 \begin{figure}
