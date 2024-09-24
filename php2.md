@@ -581,7 +581,7 @@ La función devuelve TRUE o FALSE en función de si se ha podido acceder o no.
 $fp = fopen("miarchivo.txt", "r");
 `````
 
-Muchas veces no podemos abrir el archivo porque éste no se encuentra o no tenemos acceso a él, por eso es recomendable comprobar que podemos hacerlo
+### Muchas veces no podemos abrir el archivo porque éste no se encuentra o no tenemos acceso a él, por eso es recomendable comprobar que podemos hacerlo
 
 ````php
 if (!$fp = fopen("miarchivo.txt", "r")){
@@ -603,6 +603,32 @@ Modos de apertura de ficheros
 * `c+:` Apertura para lectura y escritura. Mismo comportamiento que C.
 * `b:` Cuando se trabaja con archivos binarios como jpg, pdf, png y demás. Se suele colocar al final del modo, es decir rb, r+b, x+b, wb...
 
+## Leer Ficheros
+Para leer el contenido de un fichero, puedes usar varias funciones en PHP. La más común es `fgets`, que lee una línea completa del fichero.
+````php
+if (!$fp = fopen("miarchivo.txt", "r")){
+    echo "No se ha podido abrir el archivo";
+}else{
+
+    while(!feof($fp)) {
+        $linea = fgets($fp);
+        echo $linea;
+    }
+}
+
+fclose($archivo);
+````
+También puedes usar `fread` para leer una cantidad específica de bytes.
+
+## Escribir Ficheros
+Para escribir en un fichero, utiliza la función `fwrite`. Debes abrir el fichero en modo de escritura antes de usar esta función.
+
+````php
+$archivo = fopen("miarchivo.txt", "w");
+fwrite($archivo, "Este es un texto de ejemplo.");
+fclose($archivo);
+````
+Ten en cuenta que si el fichero ya existe, fwrite sobrescribirá su contenido. Si deseas agregar contenido al final del fichero, puedes abrirlo en modo «a» (append).
 
 # Ejercicios
 
