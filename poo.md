@@ -87,6 +87,7 @@ Un `clase` es un plantilla que define las propiedades y métodos para poder crea
 
 :::
 
+
 Para poder crear variables u `objetos` de cualquier clase, necesitamos definir una función especial llamada `constructor`. Estas funciones pueden recibir una serie de parámetros, que normalmente son los valores que queremos asignarles a los distintos atributos.
 
 * Para instanciar un objeto a partir de la clase, se utiliza _new_.
