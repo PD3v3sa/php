@@ -273,6 +273,60 @@ Si nos centramos en el array `$_SERVER` podemos consultar las siguientes propied
 
 Más información en [https://www.php.net/manual/es/reserved.variables.server.php](https://www.php.net/manual/es/reserved.variables.server.php)
 
+
+# Validación
+Respecto a la validación, es conveniente siempre hacer validación doble:
+
+* En el cliente mediante JS
+
+* En servidor, antes de llamar a negocio, es conveniente volver a validar los datos.
+
+````php
+<?php
+
+    if(isset($_REQUEST["nombre"])){
+    if(empty($_REQUEST["nombre"])){
+     ...
+  
+?>
+
+````
+* En `action` se debe escribir `<?php echo htmlespecialchars($_SERVER["PHPSELF"]); ?>`. 
+    * $_SERVER["PHP_SELF"] es una superglobal que devuelve el nombre del archivo en el que se encuentra el formulario, lo que hace que los datos se envíen al mismo archivo, en lugar de llevarlos a otro archivo para tratarlos. 
+    * Si se emplea esta forma de indicar el archivo para action, es necesario usar la función htmlespecialchars(), que convierte caracteres especiales en entidades HTML previniendo posibles ataques `Cross-site Scripting`.
+
+# Redirecciones e inclusiones
+PHP también dispone de instrucciones para permitir incluir el contenido de un documento en otro como parte de la respuesta a un cliente, o redirigir a otra página si es necesario.
+
+## Redirigir a otra página
+La redirección de una página a otra se hace aprovechando el protocolo HTTP, mediante una de sus cabeceras, llamada `Location`. Usaremos el comando `header` para acceder a las cabeceras HTTP, y dentro pondremos la cabecera Location, junto con la página a la que queremos redirigir. 
+Por ejemplo, si queremos redirigir a la página login.php de nuestra web, pondríamos algo como:
+
+``````php
+    header("Location:login.php");
+``````
+
+El siguiente código redirige a index.php pasados 5 segundos, mostrando un mensaje de redirección.
+
+````php
+header("Refresh:5; url=index.php");
+echo '<p>En breve le redirigiremos a la página principal.</p>';
+
+````
+
+Una de las utilidades prácticas que tiene esta característica es la de poder enviar al usuario a otro recurso si no se cumplen ciertas condiciones. Por ejemplo, si los datos de un formulario no son correctos. Así, podríamos utilizar funciones como `isset` o `empty` (entre otras, como la comprobación de expresiones regulares) para determinar si los datos recibidos son correctos y, en caso contrario, redirigir a una página de error o al propio formulario de nuevo:
+
+````php
+if (!isset($_REQUEST['login']) || empty($_REQUEST['login']))
+{
+    header("Location:login.php");
+    exit();
+}
+...
+`````
+:::important
+Además, es recomendable también hacer una llamada a `die()` o `exit()` tras una redirección, para evitar que se siga ejecutando el resto de la página.
+:::
 ## Subir ficheros.
 
 Se almacenan en el servidor en el array `$_FILES` con el nombre del campo del tipo *file* del formulario.
@@ -330,60 +384,6 @@ if (isset($_POST['btnSubir']) && $_POST['btnSubir'] == 'Subir') {
 
 La función `move_uploaded_file()` mueve un archivo subido del directorio temporal al directorio que se indique.
 
-
-# Validación
-Respecto a la validación, es conveniente siempre hacer validación doble:
-
-* En el cliente mediante JS
-
-* En servidor, antes de llamar a negocio, es conveniente volver a validar los datos.
-
-````php
-<?php
-
-    if(isset($_REQUEST["nombre"])){
-    if(empty($_REQUEST["nombre"])){
-     ...
-  
-?>
-
-````
-* En `action` se debe escribir `<?php echo htmlespecialchars($_SERVER["PHPSELF"]); ?>`. 
-    * $_SERVER["PHP_SELF"] es una superglobal que devuelve el nombre del archivo en el que se encuentra el formulario, lo que hace que los datos se envíen al mismo archivo, en lugar de llevarlos a otro archivo para tratarlos. 
-    * Si se emplea esta forma de indicar el archivo para action, es necesario usar la función htmlespecialchars(), que convierte caracteres especiales en entidades HTML previniendo posibles ataques `Cross-site Scripting`.
-
-# Redirecciones e inclusiones
-PHP también dispone de instrucciones para permitir incluir el contenido de un documento en otro como parte de la respuesta a un cliente, o redirigir a otra página si es necesario.
-
-## Redirigir a otra página
-La redirección de una página a otra se hace aprovechando el protocolo HTTP, mediante una de sus cabeceras, llamada `Location`. Usaremos el comando `header` para acceder a las cabeceras HTTP, y dentro pondremos la cabecera Location, junto con la página a la que queremos redirigir. 
-Por ejemplo, si queremos redirigir a la página login.php de nuestra web, pondríamos algo como:
-
-``````php
-    header("Location:login.php");
-``````
-
-El siguiente código redirige a index.php pasados 5 segundos, mostrando un mensaje de redirección.
-
-````php
-header("Refresh:5; url=index.php");
-echo '<p>En breve le redirigiremos a la página principal.</p>';
-
-````
-
-Una de las utilidades prácticas que tiene esta característica es la de poder enviar al usuario a otro recurso si no se cumplen ciertas condiciones. Por ejemplo, si los datos de un formulario no son correctos. Así, podríamos utilizar funciones como `isset` o `empty` (entre otras, como la comprobación de expresiones regulares) para determinar si los datos recibidos son correctos y, en caso contrario, redirigir a una página de error o al propio formulario de nuevo:
-
-````php
-if (!isset($_REQUEST['login']) || empty($_REQUEST['login']))
-{
-    header("Location:login.php");
-    exit();
-}
-...
-`````
-:::important
-Además, es recomendable también hacer una llamada a `die()` o `exit()` tras una redirección, para evitar que se siga ejecutando el resto de la página.
-:::
 
 # Ejercicios
 
