@@ -14,9 +14,11 @@ $imagenes = scandir("uploads/");
 <?php
     foreach ($imagenes as $foto) {
         if ($foto != "." && $foto != "..") {
-            echo "<img src=\"uploads/" . $foto . "\" width=\"500px\" height=\"100px\"></img>";
+            echo "<img src=\"uploads/" . $foto . "\" width=\"500px\" height=\"500px\"></img>";
         }
     }
+    header("Refresh:5; url=subirFile.php");
+    echo '<p>En breve le redirigiremos a la página principal.</p>';
 ?>
     
 </body>

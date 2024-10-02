@@ -22,11 +22,14 @@ if ((($_FILES["archivoEnviado"]["type"] == "image/gif")
             echo "Size: " . ($_FILES["archivoEnviado"]["size"] / 1024) . " kB<br>";
             echo "Stored in: " . $_FILES["archivoEnviado"]["tmp_name"];
 
-            if (file_exists("upload/" . $_FILES["archivoEnviado"]["name"])) {
+            if (file_exists("uploads/" . $_FILES["archivoEnviado"]["name"])) {
                 echo $_FILES["archivoEnviado"]["name"] . " ya existe. ";
             } else {
                 //move_uploaded_file($_FILES["archivoEnviado"]["tmp_name"],"uploads/" . date_timestamp_get($fecha) . $_FILES["archivoEnviado"]["name"]);
                 $nombre = $_FILES['archivoEnviado']['name'];
+                
+             
+
                 move_uploaded_file($_FILES['archivoEnviado']['tmp_name'], "uploads/{$nombre}");
 
                 echo "Guardado en in: " . "uploads/" . $_FILES["archivoEnviado"]["name"];
