@@ -432,3 +432,21 @@ Vamos a simular un formulario de acceso:
 Crea un formulario que permita subir unicamente imágenes (comprueba la propiedad type del archivo subido). Si el usuario selecciona otro tipo de archivos, se le debe informar del error y permitir que suba un nuevo archivo.
 En el caso de subir el tipo correcto, visualizar la imagen durante 5 segundos,con la ruta y nombre, tamaño de anchura y altura y redirecciona al formulario.
 También hay que crear un enlace para mostrar el listado de todas las imagenes subidas.(analiza/estudia el método `scandir()`).
+
+### Ley d'Hont
+\begin{figure}
+\centering
+\subfigure[hont]{\includegraphics[width=0.5\linewidth]{./img/hont.png}}
+\end{figure}
+
+Nos piden el diseño de una página web donde introduzcamos el número de partidos políticos, la cantidad de votos por partido y el número de escaños a repartir y nos devuelva una tabla como la siguiente: 
+
+* Donde las columnas son el Total de votos del partido dividido entre el número de escaños. 
+    *  500.000/1, 500.000/2 … 500.000/7 y así con los 4 partidos.
+
+\begin{figure}
+\centering
+\subfigure[Resultado]{\includegraphics[width=0.5\linewidth]{./img/tablahont.png}}
+\end{figure}
+Donde hemos metido los 4 partidos el número total de votos por partido 500.000, 300.000, 150.000 y 50.000 respectivamente y el total de escaños a repartir, en este caso 7. 
+Si nos fijamos y simplificando mucho hay que marcar las 7 cantidades mayores.
