@@ -9,7 +9,7 @@
  if (isset($_COOKIE["user"])) {
      // Recuperar una cookie
      $cookie = $_COOKIE["user"];
-     echo ($_COOKIE["user"]);
+    
  } else {
      // Generar una cookie
     setcookie("user", "Pepe Devesa", time()+1000);
@@ -26,7 +26,7 @@
 </head>
 <body>
 <?php
-
+   echo "<h1>".$_COOKIE["user"]."</h1>";
 ?>
 </body>
 </html>

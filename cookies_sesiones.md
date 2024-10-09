@@ -129,6 +129,27 @@ Se utilizan para:
 * Almacenar valores temporales de usuario.
 * Si un usuario está navegando por una lista paginada de artículos, ordenados de cierta manera, podemos almacenar el ajuste de la clasificación.
 
+````php
+<?php
+// Establecemos los valores de las Cookies
+setcookie("Valor_1", "1");
+setcookie("Valor_2", "2");
+setcookie("Valor_3", "3");
+?>
+<html>
+<head>
+<title>Ejemplo</title>
+</head>
+<body>
+    <pre>
+        <?php
+        print_r($_COOKIE);
+        ?>
+    </pre >
+</body>
+</html>
+`````
+
 # Sesiones
 
 `$_SESSION` es un array especial utilizado para guardar información a través de los *requests* que un usuario hace durante su visita a un sitio web o aplicación. 
@@ -198,9 +219,9 @@ Ya hemos visto estos dos mecanismos de compartir y actualizar información entre
 
 * **No usaremos ni una ni otra para almacenar información privada del usuario, como por ejemplo contraseña, número de tarjeta de crédito, etc.**
 
-# Ejercicios 
+# Ejercicios
 ### ejcookies.php
-Realizar una aplicación que compruebe si existe la *cookie*  "user" tiene datos, vuestro nombre, en caso de estar vacia que la cree con una caducidad de _1000_. En la siguiente ejecución debe de aparecer vuetros nombre en el navegador.
+Realizar una aplicación que compruebe si existe la *cookie*  "user",vuestro nombre, y "color". En caso de estar algun a vacia que la cree con una caducidad de _1000_ y poder cambiar el color de fondo del navegador, habría qu cambiar la propiedad background-color de body. En la siguiente ejecución debe de aparecer vuetros nombre en el navegador y el color elegido.
 
 ### recordar.php
 Realizar un formulario de entrada para los datos de _login_ y _pass_ con un check _recordar_. Si está seleccionado el _check_ a la siguiente sesion debe cargar los datos de manera automática.
