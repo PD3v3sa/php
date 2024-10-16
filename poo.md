@@ -129,7 +129,6 @@ $s1 = new Software(1, "LibreOffice", "6.0");
 $s2 = new Software(2, "GIMP", "3.8");
 ````
 Y para llamar a las funciones de la clase y poder, por ejemplo, mostrar los datos de cada software por pantalla, haríamos algo como esto.
-
 ````php
 echo "<p>Datos del primer programa:</p>";
 $s1->MostrarDatos();
@@ -137,6 +136,7 @@ echo "<p>Datos del segundo programa:</p>";
 $s2->MostrarDatos();
 ````
  # Encapsualación
+
  Hemos dicho que los atributos de una clase normalmente son privados. Esto es así para no poder acceder a ellos directamente desde fuera, y cambiar su valor erróneamente.
  
 
@@ -425,7 +425,7 @@ Al ejecutar ese código tendremos como resultado lo siguiente:
 ````php
 DNI:12345678
 Nombre: Pepe Devesa
-`````
+````
 
 # Métodos mágicos
 Todas las clases PHP ofrecen un conjunto de métodos, también conocidos como **magic methods** que se pueden sobreescribir para sustituir su comportamiento. Algunos de ellos ya los hemos utilizado.
@@ -490,15 +490,15 @@ $p1 = new Producto();           // lo busca en el mismo namespace y encuentra \D
 $p2 = new Model\Producto(); // daría error, no existe el namespace Model. Está buscando \Dwes\Ejemplos\Model\Producto
 $p3 = new \Dwes\Ejemplos\Producto(); // \Dwes\Ejemplos\Producto
 ````
-# Excepciones
+
+# Exepciones
 
 * Exception es la clase base para todas las excepciones de usuario en PHP.
 * Proporcionan métodos para obtener información de la excepción y de traza
     * getMessage. Devuelve el mensaje, en caso de que se haya puesto algún
     * getCode. Devuelve el código de error si existe
 
-## Exempciones definidas por el usuario
-Otra opción para indicar un error es lanzar una exención.
+## Excepciones definidas por el usuario
 
 * El código susceptible de producir algún error se introduce en un bloque **try**
 
@@ -546,7 +546,7 @@ try{
 
 # Ejercicios
 
-### Clases.php 
+## Clases.php 
 
 Crea una página llamada clases.php con: 
 
@@ -565,7 +565,7 @@ Crea una página llamada clases.php con:
 
 Fuera de las clases, entre el código HTML de la página, crea un objeto de cada tipo (una Persona y un Estudiante), con los valores que quieras, llama después a algún setter de cada una para cambiar el valor de algún atributo, y finalmente llama a sus métodos Mostrar para que saquen la información de cada uno.
 
-### Player.php
+## Player.php
 
 Crea un clase **Player**, con los campos:
 
@@ -607,14 +607,14 @@ Crea los métodos:
 * SignPlayer(Player)
 
 
-Importa el fichero y cargalo el Team de l'Atletic de Madrit y muestra la palntilla en pantalla  utilitzando la función render de la classe Team.
+Importa el fichero y cargalo el Team de l'Atletic de Madrit y muestra la plantilla en pantalla  utilitzando la función render de la classe Team.
 
 \begin{figure}
 \centering
 \subfigure[Team]{\includegraphics[width=0.7\linewidth]{./img/team.png}}
 \end{figure}
 
-### class.articulo.php
+## Articulo.php
 
 Crea dos clases,**Articulo** y **ArticuloRebajado** que será una subclase de Articulo.
 
@@ -674,31 +674,4 @@ object(ArticuloRebajado)[1]
   protected 'precio' => float 352.1
 
 ````
-
-### Trabajadores
-Basandonse en el UML siguiente
-
-\begin{figure}
-\centering
-\subfigure[Trabajadores]{\includegraphics[width=0.3\linewidth]{./img/trabajador.png}}
-\end{figure}
-
-Crar el desarrollo en php teniendo en cuenta:
-
-* `Persona` es **clase abstracta** donde su método estático _toHtml(Persona $p)_ tenga que ser redefinido en todos sus hijos.
-````php
-public static function toHtml(Persona $p): string {
-        if ($p instanceof Empleado) {
-            // Aqui ya podemos acceder a las propiedades y métodos de Empleado
-        }
-    }
-````
-
-* `Trabajador` es una **clase abstracta** que almacena los _telefonos_ y donde _calcularSueldo_ es un método abstracto de manera que:
-
-    * El sueldo de un `Empleado` se calcula a partir de las horas trabajadas y lo que cobra por hora.
-
-    * Para los `Gerentes`, su sueldo se incrementa porcentualmente en base a su edad: *salario + salario*edad/100*
-
-    * A la hora de saber si un empleado debe pagar impuestos, lo hará siempre y cuando tenga más de 21 años y dependa del valor de su sueldo.
 
