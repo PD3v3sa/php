@@ -12,6 +12,7 @@ Mediante un array bidimensional, almacena el nombre, altura y email de 5 persona
 un array de personas, siendo cada persona un array asociativo: [ [‘nombre’=>‘Aitor’, ‘altura’=>182,
 ‘email’=>‘aitor@correo.com’],[...],... ] Posteriormente, recorre el array y muéstralo en una tabla
 HTML.
+
 ![imagen](https://github.com/user-attachments/assets/b4f115f3-c772-4e4b-9f30-cd9f85c5f578)
 
 # Garaje.php
