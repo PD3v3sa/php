@@ -35,7 +35,8 @@ enlace para mostrar el listado de todas las imagenes subidas.(analiza/estudia el
 ===================================================
 ![imagen](https://github.com/user-attachments/assets/2b327c9c-c3ee-4625-b771-2cef19182019)
 ========================================================
-![imagen](https://github.com/user-attachments/assets/a51046af-879e-4a94-907f-6938c84f1841)
+![imagen](https://github.com/user-attachments/assets/243eac53-6096-4778-ae82-2b23fb056a8b)
+
 
 
 
