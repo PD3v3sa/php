@@ -8,7 +8,7 @@ Muestra por pantalla:
 * En qué variable están los parámetros de la petición.
 * ¿Qué es la ruta del sitio web en el ordenador local ?
 * Utilitza una vista para mostrar el resultado. calculadora.view.php
-  ![imagen](https://github.com/user-attachments/assets/19d91cc4-9bc8-497b-835f-c67c93c43005)
+![imagen](https://github.com/user-attachments/assets/146709a8-d647-45c6-8b4b-c2eb4851915a)
 # formulario.html y formulario.php
 Crea un formulario(utiliza bootstrap) que solicite:
 * Nombre y apellidos.
