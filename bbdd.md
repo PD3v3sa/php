@@ -146,6 +146,7 @@ En segundo lugar, establecemos los parámetros para manejar las excepciones, en 
 * **PDO::ERRMODE_EXCEPTION** con este atributo obligamos a que lance excepciones, además de ser la opción más humana y legible que hay a la hora de controlar errores.
 
 Cualquier error que se lance a través de PDO, el sistema lanzará una **PDOException**.
+
 # Consultas Preparadas
 
 ## Insert(CRUD)
