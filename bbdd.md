@@ -500,9 +500,13 @@ Veamos el comportamiento con un ejemplo:
 Debemos crear un formulario para registrar las entradas:
 
     * Cuando pulsamos `Registrar` el contenido de los campos se deben insertar en la tabla _task_ de la BBDD y deberás mostrar en un listado todos los registros incluido el nuevo, junto con la fecha de creación *created_at*.
+    
+![Principal](img/image-1.png)
 
  * `Update`:
     * Seleccionaremos un registro y pulsaremos un *botón o enlace* que nos permita modificar el campo o campos en cuestión. EXCEPTO la PK.
+
+![Actualizar](img/image-2.png)
 
 * `Delete`:
 
