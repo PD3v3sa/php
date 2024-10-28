@@ -147,10 +147,13 @@ En segundo lugar, establecemos los parámetros para manejar las excepciones, en 
 
 Cualquier error que se lance a través de PDO, el sistema lanzará una **PDOException**.
 # Consultas Preparadas
+
 ## Insert(CRUD)
 
 Para ejecutar instrucciones SQL, seguiremos dos pasos:
+
  1. Preparamos la instrucción SQL a ejecutar (*SELECT, INSERT, UPDATE, DELETE*). Utilizaremos la instrucción `prepare` para ello.
+
  2. La ejecutamos, indicando si es necesario algunos parámetros variables en la operación (valores para algunas condiciones o campos). Emplearemos la instrucción `execute` para esta ejecución.
 
 Así lanzaríamos una instrucción INSERT para insertar datos fijos en nuestra tabla videojuegos del ejemplo anterior, una vez obtenida la conexión en el objeto $pdo anterior.
@@ -477,4 +480,37 @@ Para trabajar con transacciones, PDO incorpora tres métodos:
 * **commit**. Confirma la transacción actual.
 
 * **rollback**. Revierte los cambios llevados a cabo en la transacción actual
-Una vez ejecutado un commit o un rollback, se volverá a la manera de confirmación automática
+Una vez ejecutado un commit o un rollback, se volverá a la manera de confirmación automática.
+
+# Ejercicio
+Vamos a crar un CRUD de una única tabla *task*:
+
+* `Create`
+````sql
+CREATE TABLE task(
+  id INT(11) PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+````
+Veamos el comportamiento con un ejemplo: 
+
+* `Read`
+Debemos crear un formulario para registrar las entradas:
+
+    * Cuando pulsamos `Registrar` el contenido de los campos se deben insertar en la tabla _task_ de la BBDD y deberás mostrar en un listado todos los registros incluido el nuevo, junto con la fecha de creación *created_at*.
+
+ * `Update`:
+    * Seleccionaremos un registro y pulsaremos un *botón o enlace* que nos permita modificar el campo o campos en cuestión. EXCEPTO la PK.
+
+* `Delete`:
+
+    * Se seleccionará el registro y se borrará directamente cuando se pulse el *botón o enlace*.
+
+::: important
+
+* También seria interesante que utilizaramos una sesion y que saliese vuestro nombre como que estáis autenticados y podéis operar.
+* Es importante el diseño.
+* Pensar que debe de ser muy intuitivo, el usuario debe de saber donde se encuentra siempre.
+:::
