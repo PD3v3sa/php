@@ -146,6 +146,7 @@ En segundo lugar, establecemos los parámetros para manejar las excepciones, en 
 * **PDO::ERRMODE_EXCEPTION** con este atributo obligamos a que lance excepciones, además de ser la opción más humana y legible que hay a la hora de controlar errores.
 
 Cualquier error que se lance a través de PDO, el sistema lanzará una **PDOException**.
+
 # Consultas Preparadas
 
 ## Insert(CRUD)
@@ -389,12 +390,17 @@ while ($rows = mysqli_fetch_assoc($results)) {
 
 ?>
 ````
+Hagamos una primera consulta desde la URL
 
-Podemo ver si estamos ante una inyección SQL de este tipo con el siguiente payload `1' UNION SELECT 1,2,3,4-- -`. Con esta consulta pueden pasar 3 cosas:
+![Consultra el genero Deportes](./img/Deportes.png)
+
+
+Podemos ver si estamos ante una inyección SQL de este tipo con el siguiente payload `1' UNION SELECT 1,2,3,4-- -`. 
+Con esta consulta pueden pasar 3 cosas:
 
 * Que añada el dato de la segunda consulta SELECT sin dar errores.
 
-* Que nos salte el siguiente error: The used SELECT statements have a different number of columns. **RECORDAR: con UNION tiene que tener el mismmo número de columas**
+* Que nos salte el siguiente error: The used SELECT statements have a different number of columns. **RECORDAR: con UNION tiene que tener el mismo número de columas**
 
 * Que no ocurra nada.
 
