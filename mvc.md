@@ -21,7 +21,7 @@ toc-depth: 2
 
 # capçalera i peu
 header-left: \thetitle
-header-right: Curs 2023-2024
+header-right: Curs 2024-2025
 footer-left: IES Salvador Gadea
 footer-right: \thepage/\pageref{LastPage}
 
@@ -60,8 +60,24 @@ importantblock: [important]
 
 
 ...
+
+# Modelo Vista Controlador
+Siguiendo con el ejemplo del tema anterior, _videojuego_, vamos a ver la estructura con la imagen siguiente:
+
+\begin{figure}
+\centering
+\subfigure[Estructura]{\includegraphics[width=0.5\linewidth]{./img/mvc.png}}
+\end{figure}
+
+
+* **Carpeta Models** donde tendremos la información de cada tabla de nuestra BBDD, en el ejemplo tendremos la tabla _videojuegos_.
+* **Carpeta Controller** donde tendremos los métodos para actualizar los datos del modelo y redireccionar a la vista.
+* **Carpeta Views** Donde residen las interfaz con el usuario.
+* **Carpeta Config** Conexión con la BBDD.
+* Vemos un fichero _index.php_ fuera de la estructuque será el primero que se llamará y lo que hace es cargar el _controller_.
+
 # Conexión
-Primero vamos a crear un archivo llamado `conexion.php` en este archivo vamos a conectarnos con el sistema gestor de base de datos que en este caso es mysql, para podernos conectar a mysql necesitamos sus características, en este caso: 
+Primero vamos a crear un archivo llamado `Conexion.php` en este archivo vamos a conectarnos con el sistema gestor de base de datos que en este caso es mysql, para podernos conectar a mysql necesitamos sus características, en este caso: 
 
 * Driver: que es el nombre del sistema gestor de base de datos.
 
@@ -73,7 +89,7 @@ Primero vamos a crear un archivo llamado `conexion.php` en este archivo vamos a 
 
 
 Ahora vamos a crear una instancia de `PDO`.
-```php
+````php
 // MYSQL: Conexión con la base de datos
 class Conexion {
     private $pdo;
@@ -103,315 +119,239 @@ class Conexion {
             }
     }
 }
-``````
+````
 
-# El MODELO Crear, Modificar, eliminar y Consultar (CRUD)
+# El Modelo (Models) 
+
 El modelo es quien define la lógica de negocio. Son las clases y los métodos que se comunican directamente con la base de datos.
-Creamos nuestra clase en mi caso `Videojuego.php`, donde nosotros vamos a heredar de `Conexion.php`, creamos los atributos y nuestra conexión PDO, ahora creamos un constructor, por lo tanto accederemos a esta con la palabra reservada parent, y asignamos estos dos datos a nuestras variables locales para compartirlos con la clase.
-
+Creamos nuestra clase en mi caso `Videojuego.php`, donde tendremos que acceder vamos a `Conexion.php`.
 
 ````php
-require_once 'Conexion.php';
+<?php
 
-class Videojuego extends Conexion
+require_once "Config/Conexion.php";
+
+class Videojuego 
 {
-   private $pdo;
-
-    public function __construct()
-    {
-      parent::__construct();
-      $this->pdo=parent::conectar();
+    private $pdo;
+    public function __construct() {
+        $database = new Conexion();
+        $this->pdo = $database->conectar();
     }
-// a partir de aquí iran todas los métodos CRUD.
-``````
-Ahora vamos a obtener todos los datos que están registrados en nuestra tabla, para eso llamamos nuestra conexión y usamos la función **prepare** para preparar nuestra sentencias SQL, después la ejecutamos con el método **execute** para poder obtener los datos usaremos `fetchAll` nos devuelve un `array` que contiene todas las filas de la tabla, consultamos nuestra tabla y obtenemos todos los datos. `try catch` para obtener los errores que se regresen.
+// a partir de aquí iran todas los métodos CRUD
 
-## Acceder a los datos (select * from...)
-Ahora vamos a obtener todos los datos que están registrados en nuestra tabla, para eso llamamos nuestra conexión y usamos la función `prepare` para preparar nuestra sentencias SQL, después la ejecutamos con el método execute para poder obtener los datos usaremos `fetchAll` nos devuelve un `array` que contiene todas las filas de la tabla.
-
-````php
-
-//    Método Read que devuelve un array con todos los registro de la tabla
-
- 
-public function Listar()
+public function getAll()
+{
+    try{
+        $query = "SELECT * FROM videojuegos";
+        $registro = $this->pdo->prepare($query);
+        $registro->execute();
+        return  $registro->fetchAll();
+    }catch (PDOException $e)
     {
-        try{
-            $query = "SELECT * FROM videojuego";
-            $registro = $this->pdo->prepare($query);
-    
-            $registro->execute();
-    
-            return $registro->fetchAll();
-        }catch (PDOException $e)
-        {
-            die($e->getMessage());
-        }  
+        die($e->getMessage());
     }
-``````
-Ahora obtenemos un dato en específico de la tabla. Después la ejecutamos con el método execute para poder obtener los datos usaremos `fetch`, nos devuelve un array con 1 solo elemento.
-
-````php
-
-public function getJuego($id)
+}
+public function getById($id)
+{
+    try{
+        $query = "SELECT * FROM videojuegos WHERE id = $id";
+        $registro = $this->pdo->prepare($query);
+        $registro->execute();
+        return $registro->fetch();
+    }catch (PDOException $e)
     {
-        try{
-            $query = "SELECT * FROM videojuego WHERE id = $id";
-
-            $registro = $this->pdo->prepare($query);
-    
-            $registro->execute();
-            return $registro->fetch();
-           
-        }catch (PDOException $e)
-        {
-            die($e->getMessage());
-        }
-        
+        die($e->getMessage());
     }
-``````
-
-## Borrado de datos (Delete)
-
-````php
-public function Borrar($d)
+}
+public function delete($d)
+{
+    try{
+        $insercion = $this->pdo->prepare("delete from videojuegos where
+        id=:id");
+        $insercion->bindParam(':id', $d);
+        return $insercion->execute();
+    }catch(PDOException $e)
     {
-     try{
-        
-       $insercion = $this->pdo->prepare("delete from videojuego where titulo=:titulo");
-       $insercion->bindParam(':titulo', $d);
-       return $insercion->execute();
-
-     }catch(PDOException $e)
-     {
-         die($e->getMessage());
-     }
+        die($e->getMessage());
     }
-``````
-## Actualizar (UPDATE)
-
-````php
- public function Editar($i,$t,$g,$p)
+}
+public function edit($i,$t,$g,$p)
+{
+    try{
+        $insercion = $this->pdo->prepare("update videojuegos set titulo=:titulo, genero=:genero, precio=:precio where id=:id");
+        $insercion->bindParam(':id', $i);
+        $insercion->bindParam(':titulo', $t);
+        $insercion->bindParam(':genero', $g);
+        $insercion->bindParam(':precio', $p);
+        $insercion->execute();
+        return true;
+    }catch (PDOException $e)
     {
-        try{
-            $insercion = $this->pdo->prepare("update videojuego set titulo=:titulo, genero=:genero, precio=:precio where id=:id");
-            $insercion->bindParam(':id', $i);
-            $insercion->bindParam(':titulo', $t);
-            $insercion->bindParam(':genero', $g);
-            $insercion->bindParam(':precio', $p);
-            $insercion->execute();
-            return true;
-        }catch (PDOException $e)
-        {
-            die($e->getMessage());
-        } 
-       
-
+        die($e->getMessage());
     }
-``````
-
-## Insertar (CREATE)
-
-````php
-public function Insertar($i,$t,$g,$p)
+}
+public function save($t,$g,$p)
+{
+    try{
+        $insercion = $this->pdo->prepare("INSERT INTO videojuegos(titulo,genero,precio) VALUES(:titulo, :genero, :precio)");
+        $insercion->bindParam(':titulo', $t);
+        $insercion->bindParam(':genero', $g);
+        $insercion->bindParam(':precio', $p);
+        return $insercion->execute();
+    }catch (PDOException $e)
     {
-        try{
-            $insercion = $pdo->prepare("INSERT INTO videojuego(titulo, genero,precio) VALUES(:titulo, :genero, :precio)");
-           
-            $insercion->bindParam(':titulo', $t);
-            $insercion->bindParam(':genero', $g);
-            $insercion->bindParam(':precio', $p);
-            $insercion->execute();
-            return true;
-        }catch (PDOException $e)
-        {
-            die($e->getMessage());
-        } 
+        die($e->getMessage());
     }
-``````
+}
+public function update($id, $titulo, $genero, $precio) {
+    $query = "UPDATE videojuegos SET titulo = :titulo, genero = :genero, precio = :precio WHERE id = :id";
+    $insercion = $this->pdo->prepare($query);
+    $insercion->bindParam(":id", $id);
+    $insercion->bindParam(":titulo", $titulo);
+    $insercion->bindParam(":genero", $genero);
+    $insercion->bindParam(":precio", $precio);
+    return $insercion->execute();
+}
+}
+````
+
+
+
+:::important
+Como podéis observar las funciones de los métodos son las mismas que las estudiadas en el tema anterior. Para que la clase se ajuste más al paradigma de la POO deberia tener los _getter_ y _setter_ de los campos de la tabla y crear dichos campos como variables privadas.
+También seria conveniente a la clase podenerle el _sufijo_ del modelo, por ejemplo _VideojuegoController_ o _VideojuegoModel_
+:::
+
+
 # El Controlador
 Es el intermediario entre la vista y el modelo. Controla las interacciones del usuario en la vista. Pide los datos al modelo y los devuelve a la vista para que los muestre. Es el encargado de realizar las llamadas a las clases y los métodos.
-Crearemos los programas `insertar.php, editar.php, borrar.php, editar.php` con las estancias a los métodos específicos.
-
-## Insertar
-````php
-<?php
-//**********************************************
-//***************  Insertar ********************
-//**********************************************
- 
-  include_once ("Videojuego.php");
-  $pdo = new Videojuego();
- 
-  $consulta = $pdo->Insertar($_REQUEST['titulo'],$_REQUEST['genero'],$_REQUEST['pvp']);
-
-if(!$consulta) 
-echo "<p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()}</p>\n";
-
-$pdo = null;
-header("Refresh:1; url=listar.php");
-?>
-``````
-
-## Borrar
 
 ````php
 <?php
-//**********************************************
-//***************   Borrar  ********************
-//**********************************************
-include_once ("Videojuego.php");
-  $pdo = new Videojuego();
+require_once "Models/VideojuegoModel.php";
+
+class VideojuegoController {
+
+    private $videojuegoModel;
+
+    public function __construct() {
+        $this->videojuegoModel = new Videojuego();
+    }
+
+    public function index() {
+        $videojuegos = $this->videojuegoModel->getAll();
+        require "Views/listar.php";
+    }
  
-  $consulta = $pdo->Borrar($_REQUEST['titulo']);
-if(!$consulta) 
-echo "<p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()}</p>\n";
+    public function create() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $titulo = $_POST['titulo'];
+            $genero = $_POST['genero'];
+            $precio = $_POST['precio'];
+            $this->videojuegoModel->save($titulo, $genero, $precio);
+            header("Location: index.php");
+        } else {
+            require "Views/create.php";
+        }
+    }
 
-$pdo = null;
-header("Refresh:1; url=listar.php");
-echo '<p>En breve le redirigiremos al listado.</p>';
-?>
-``````
-## Editar
-````php
-<?php
-//**********************************************
-//***************   Editar  ********************
-//**********************************************
-include_once ("Videojuego.php");
-  $pdo = new Videojuego();
- 
-  $consulta = $pdo->Editar($_REQUEST['id'],$_REQUEST['titulo'],$_REQUEST['genero'],$_REQUEST['precio']);
+    public function edit($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $titulo = $_POST['titulo'];
+            $genero = $_POST['genero'];
+            $precio = $_POST['precio'];
+            $this->videojuegoModel->update($id, $titulo, $genero, $precio);
+            header("Location: index.php");
+        } else {
+            $videojuego = $this->videojuegoModel->getById($id);
+            require "Views/edit.php";
+        }
+    }
 
-if(!$consulta) 
-echo "<p class=\"aviso\">Error al ejecutar la consulta. SQLSTATE[{$pdo->errorCode()}]: {$pdo->errorInfo()}</p>\n";
+    public function delete($id) {
+        $this->videojuegoModel->delete($id);
+        header("Location: index.php");
+    }
 
-$pdo = null;
-header("Refresh:1; url=listar.php");
-echo '<p>En breve le redirigiremos al listado.</p>';
-?>
-`````
-## Select
-````php
-<?php
-//**********************************************
-//***************    Leer(Select)  *************
-//**********************************************
- include_once ("Videojuego.php");
-  $pdo = new Videojuego();
- 
-  $consulta = $pdo->Listar();
-
-
-  echo "<a href='inicio.php'><img src='box-arrow-in-down.svg' width='32' height='32'></a>";
-
-  
-  echo "<table class='table'><thead>";
-  echo "<tr> <th scope='col'>Nombre</th><th scope='col'>genero</th><th scope='col'>PVP</th><th scope='col'>operaciones</th></tr>";
-  echo "</thead><tbody>";
-  foreach($consulta as $registro){
-      $titol=$registro['titulo'];
-      ...
-?>
-``````
-
-Fijaos todos crean una estancia de videojuego 
-`$pdo = new Videojuego();` y ya accedemos a las propiedades de la tabla videojuego.
+}
+````
 
 # La Vista
 
 Muestra la información al usuario de manera lógica y legible.
 
+**listar.php**
 ````php
-//Formulario insertar
-<?php
-include_once("header.php");
-?>
-   <div class="row">
-                    <div class="col-sm-8"><h2>Agregar <b>Videojuego</b></h2></div>
+<h1>Lista de Videojuegos</h1>
+<a href="index.php?action=create">Agregar Videojuego</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Género</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+    </tr>
+    <?php foreach ($videojuegos as $videojuego): ?>
+        <tr>
+            <td><?= $videojuego['id'] ?></td>
+            <td><?= $videojuego['titulo'] ?></td>
+            <td><?= $videojuego['genero'] ?></td>
+            <td><?= $videojuego['precio'] ?></td>
+            <td>
+                <a href="index.php?action=edit&id=<?= $videojuego['id'] ?>">Editar</a>
+                <a href="index.php?action=delete&id=<?= $videojuego['id'] ?>" onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+````
+**edit.php**
+````php
+<h1>Editar Videojuego</h1>
+<form method="POST" action="index.php?action=edit&id=<?= $videojuego['id'] ?>">
+    <label for="titulo">Título:</label>
+    <input type="text" name="titulo" value="<?= $videojuego['titulo'] ?>" required>
+    <br>
+    <label for="genero">Género:</label>
+    <input type="text" name="genero" value="<?= $videojuego['genero'] ?>" required>
+    <br>
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" value="<?= $videojuego['precio'] ?>" step="0.01" required>
+    <br>
+    <button type="submit">Actualizar</button>
+</form>
+````
+**create.php**
+````php
+<h1>Agregar Videojuego</h1>
+<form method="POST" action="index.php?action=create">
+    <label for="titulo">Título:</label>
+    <input type="text" name="titulo" required>
+    <br>
+    <label for="genero">Género:</label>
+    <input type="text" name="genero" required>
+    <br>
+    <label for="precio">Precio:</label>
+    <input type="number" name="precio" step="0.01" required>
+    <br>
+    <button type="submit">Guardar</button>
+</form>
 
-                </div>
-            </div>
-			<div class="row">
-				<form action="insertar.php" method="post">
-				<div class="col-md-6">
-					<label>Titulo:</label>
-					<input type="text" name="titulo" id="titulo" class='form-control' maxlength="100" required >
-				</div>
-				<div class="col-md-6">
-					<label>Genero:</label>
-					<input type="text" name="genero" id="genero" class='form-control' maxlength="100" required>
-				</div>
-				<div class="col-md-3">
-					<label>PVP:</label>
-					<input type="real"  name="pvp" id="pvp" class='form-control'  required></textarea>
-				</div>
-			
-				
-				<div class="col-md-12 pull-right">
-				<hr>
-					<button type="submit" class="btn btn-success">Guardar datos</button>
-				</div>
-				</form>
-			</div>
-        </div>
-    </div>    
-	<footer>
-	<div class="badge bg-primary text-wrap" style="width: 6rem;">
-  This text should wrap.
-</div>
-</footer> 
-</body>
-
-//Formulario Listar
-<?php
-include_once("header.php");
-?>
-                <div class="row">
-                    <div class="col-sm-8"><h2>Listado de VideoJuegos</h2></div>
-
-                </div>
-            </div>
-<?php
-  include_once ("Videojuego.php");
-  $pdo = new Videojuego();
- 
-  $consulta = $pdo->Listar();
-
-
-  echo "<a href='inicio.php'><img src='box-arrow-in-down.svg' width='32' height='32'></a>";
-
-  
-  echo "<table class='table'><thead>";
-  echo "<tr> <th scope='col'>Nombre</th><th scope='col'>genero</th><th scope='col'>PVP</th><th scope='col'>operaciones</th></tr>";
-  echo "</thead><tbody>";
-  foreach($consulta as $registro){
-      $titol=$registro['titulo'];
-    
-    echo "<tr><td>".$registro['titulo']."</td><td>".$registro['genero']."</td><td>".$registro['precio'].
-    "</td><td><a href='borrar.php?titulo=$titol'><img src='trash-sharp.svg' width='32' height='32'></a>".
-    "<a href=form_editar.php?id=".$registro['id']."><img src='create-sharp.svg' width='32' height='32'></a></td>".
-    "</tr>";
-    }
-  echo "</tbody></table>";
-
-
-  $pdo = null;
-  ?>
-``````
+````
 # Login & Password
-
 Para manejar un sistema completo de login y password con contraseñas cifradas, necesitamos un método que cifre esos strings que el usuario introduce como contraseña; tanto en el formulario de registro como en el del login, ya que al codificar una contraseña, después tenemos que decodificarla para comprobar que ambas contrasñeas (la que instroduce el usuario en el login y la que tenemos en la base de datos) coincidan.
 
 Necesitamos pues:
 
-* `password_hash()` para almacenar la contraseña en la base de datos a la hora de hacer el INSERT
+* password_hash() para almacenar la contraseña en la base de datos a la hora de hacer el INSERT
 
-    * `PASSWORD_DEFAULT` almacenamos la contraseña usando el método de encriptación bcrypt
+    * PASSWORD_DEFAULT almacenamos la contraseña usando el método de encriptación bcrypt
 
-    * `PASSWORD_BCRYPT` almacenamos la contraseña usando el algoritmo CRYPT_BLOWFISH compatible con crypt()
+    * PASSWORD_BCRYPT almacenamos la contraseña usando el algoritmo CRYPT_BLOWFISH compatible con crypt()
 
-* `password_verify()` para verificar el usuario y la contraseña
+* password_verify() para verificar el usuario y la contraseña
 
 ````php
 <?php
@@ -429,7 +369,6 @@ Necesitamos pues:
         "password" => password_hash($pas,PASSWORD_DEFAULT)
     ]);
 ````
-
 Ahora que tenemos el usuario codificado y guardado en la base de datos, vamos a recuperarlo para poder loguearlo correctamente.
 
 ````php
@@ -450,4 +389,4 @@ Ahora que tenemos el usuario codificado y guardado en la base de datos, vamos a 
     } else {
         echo"KO";
     }
-``````
+````

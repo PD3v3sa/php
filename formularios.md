@@ -323,7 +323,7 @@ if (!isset($_REQUEST['login']) || empty($_REQUEST['login']))
     exit();
 }
 ...
-`````
+````
 :::important
 Además, es recomendable también hacer una llamada a `die()` o `exit()` tras una redirección, para evitar que se siga ejecutando el resto de la página.
 :::
