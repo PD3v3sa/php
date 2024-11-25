@@ -62,6 +62,20 @@ importantblock: [important]
 ...
 
 # Modelo Vista Controlador
+
+Existen 3 niveles de abstracción:
+
+1. Modelo.- Es quien define la lógica de negocio. Son las clases y los métodos que se comunican directamente con la base de datos.
+2. Vista.- Muestra la información al usuario de manera lógica y legible.
+3. Controlador.- Es el intermediario entre la vista y el modelo. Controla las interacciones del usuario en la vista. Pide los datos al modelo y los devuelve a la vista para que los muestre. Es el encargado de realizar las llamadas a las clases y los métodos.
+
+* Funcionamiento del MVC
+    * El usuario realiza una petición.
+    * El controlador captura la petición.
+    * El controllador hace la llamada al modelo correspondiente.
+    * El modelo interactúa con la base de datos.
+    * El controlador recibe la información del modelo (base de datos) y la envía a la vista.
+    * La vista muestra la información.
 Siguiendo con el ejemplo del tema anterior, _videojuego_, vamos a ver la estructura con la imagen siguiente:
 
 \begin{figure}
@@ -390,3 +404,8 @@ Ahora que tenemos el usuario codificado y guardado en la base de datos, vamos a 
         echo"KO";
     }
 ````
+
+# Ejercicios
+
+## Ejercicio 1
+Realizar el MVC del ejercicio "Vamos a crar un CRUD de una única tabla task" del tema anterior.
