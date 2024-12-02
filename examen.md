@@ -67,6 +67,8 @@ pandoc-latex-environment:
     2. El ejercicio 2 vale el 30%.
     3. Es obligatorio sacar más de un 3 sobre 10 en cada ejercicio, para que se haga la media.
     4. La presentación de ambos debe ser correcta, utilizad css o bootsrap o cualquier otro frame.
+    5. Podéis utilizar apuntes y ejemplos de clase.
+    6. IA y/o google será motivo de suspensión.
 :::
 
 **Ejercicio 1**
