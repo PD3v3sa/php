@@ -68,20 +68,23 @@ pandoc-latex-environment:
     3. Es obligatorio sacar más de un 3 sobre 10 en cada ejercicio, para que se haga la media.
     4. La presentación de ambos debe ser correcta, utilizad css o bootsrap o cualquier otro frame.
     5. Podéis utilizar apuntes y ejemplos de clase.
-    6. IA y/o google será motivo de suspensión.
+    6. IA y/o google será motivo de 0.
 :::
 
 **Ejercicio 1**
 
 Desde el departamento de informàtica se nos pide que desarrollemos una aplicación para puntuar las notas del `tfg`. Los requerimientos que debemos de tener en cuenta son:
 
-* Ningún *profesor* puede saber en ningún momento la nota de los otros profesores, es privada y confidencial.
+* Habrán 4 profesores **(profesor1, profesor2, profesor3 y tutor)** acreditados para calificar a los alumnos.
 
-* Habrán 4 profesores **(profesor1, profesor2, profesor3 y tutor)** acreditados para calificar a los alumnos, además habrá un usuario **admin** que podrá ver todas las notas.
+* Ningún *profesor* puede saber en ningún momento la nota de los otros profesores, es privada y confidencial. Solo puede ver y poner su nota.
+
+* El *profesor* solo podrá acceder a la aplicación si se ha autenticado antes, módulo **inicio.php**. Una vez autenticado verá un listado de todos los alumnos matriculados.
+
+* Debéis de crear una tabla *usuarios*, con el *nombre* del usuario y la *contraseña* encriptada.
 
 * Este ejercicio se debe de hacer utilizando el _MVC_ 
-* El usuario solo podrá acceder a la aplicación si se ha autenticado. **inicio.php**.
-* Debéis de crear una tabla *usuarios*, con el *nombre* del usuario y la *contraseña* encriptada.
+
 
 Se os adjunta un script con la base de datos de los alumnos del `tfg`.
 
@@ -98,7 +101,7 @@ Tendrá dos partes los estudios y los idiomas que habla. Se os adjunta el texto.
  
 // Definir texto en valencià
 
-**$estudio** = "Sóc un model de llenguatge desenvolupat per OpenAI. Tinc una gran quantitat de coneixements i puc ajudar-te en una varietat de tasques.";
+**$estudios** = "Sóc un model de llenguatge desenvolupat per OpenAI. Tinc una gran quantitat de coneixements i puc ajudar-te en una varietat de tasques.";
 
 **$idiomas** = "Parle diversos idiomes, incloent-hi l'espanyol i l'anglés.";
 
