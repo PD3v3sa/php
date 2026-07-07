@@ -62,7 +62,7 @@ pandoc-latex-environment:
 ...
 # CRUD Empleados
 Vamos a generar un mantenimiento para la gestión de empleados de una empresa. Para ello se os adjunto el script con la única tabla, **empleados**.
-````mysql
+```mysql
 -- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
@@ -126,7 +126,7 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-````
+```
 ## Mostrar los datos de los empleados
 
 Para mostrar los datos de los empleados crear un archivo llamado **“index.php“**, el cual se encargará de listar los registros de nuestra tabla y mostrar los usuarios.

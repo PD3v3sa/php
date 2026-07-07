@@ -1,0 +1,64 @@
+
+# portada
+titlepage-color: "003366"
+titlepage-text-color: "111111"
+titlepage-rule-height: 0
+#titlepage-rule-color: "6699CC"
+titlepage-background: "backgrounds/background99.pdf"
+logo: "backgrounds/logo.png"
+logo-width: 80mm
+
+# configuració de l'índex
+toc: true
+toc-own-page: true
+toc-title: Continguts
+toc-depth: 3
+
+# capçalera i peu
+header-left: \thetitle
+header-right: Curs 2026-2027
+footer-left: IES Serpis
+footer-right: \thepage/\pageref{LastPage}
+
+# Les figures que apareguen on les definim i centrades
+float-placement-figure: H
+caption-justification: centering
+# No volem numerar les linies de codi
+listings-disable-line-numbers: true
+
+# Configuracions dels paquets de latex
+header-includes:
+# imatges i subfigures
+- \usepackage{graphicx}
+- \usepackage{subfigure}
+- \usepackage{lastpage}
+- \usepackage{tcolorbox}
+
+- \newtcolorbox{info-box}{colback=cyan!5!white,arc=0pt,outer arc=0pt,colframe=cyan!60!black}
+- \newtcolorbox{warning-box}{colback=orange!5!white,arc=0pt,outer arc=0pt,colframe=orange!80!black}
+- \newtcolorbox{error-box}{colback=red!5!white,arc=0pt,outer arc=0pt,colframe=red!75!black}
+
+# caixes d'avisos
+- \usepackage{awesomebox}
+- \usepackage{lastpage}
+# text en columnes
+- \usepackage{multicol}
+- \setlength{\columnseprule}{1pt}
+- \setlength{\columnsep}{1em}
+
+# page-background: ./img/agua.png
+#page-background-opacity: 0.5
+
+
+# definició de les caixes d'avis
+pandoc-latex-environment:
+    noteblock: [note]
+    tipblock: [tip]
+    warningblock: [warning]
+    cautionblock: [caution]
+    importantblock: [important]
+    tcolorbox: [box]
+    info-box: [info]
+    error-box: [error]
+
+...

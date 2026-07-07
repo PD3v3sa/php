@@ -73,7 +73,7 @@ Se os pasa un script con los datos de los alumnos de un `IES...` el ejercicio co
 Expecificación:
 
 * `inicio` pantalla donde se introducirá el usuario y contraseña.  Si el usuario existe lo guardaremos en una `sesion` y pasaremos al listado de *profesores* o *admin* dependiendo si hemos metido un profesor o admin.
-````php
+```php
 // Lista de usuarios y contraseñas
 $usuarios = [
     'admin' => 'admin',
@@ -82,7 +82,7 @@ $usuarios = [
     'profesor3' => 'profesor3',
     'tutor' => 'tutor'
 ];
-````
+```
 \begin{figure}
 \centering
 \subfigure[inicio]{\includegraphics[width=1\linewidth]{./img/Extraini.png}}
@@ -118,7 +118,7 @@ $usuarios = [
 
 Realizar un *CRUD* para la gestión de productos. Para ello tendréis que crear la tabla desde una migración con los siguientes campos:
 
-````php
+```php
  public function up(): void
     {
         Schema::create('products', function (Blueprint $table) {
@@ -131,7 +131,7 @@ Realizar un *CRUD* para la gestión de productos. Para ello tendréis que crear 
             $table->timestamps();
         });
     }
-`````
+````
 
 Como podéis ver en las imagenes siguientes ,en la pantalla de inicio, los datos son random, creados con un *seeder* y *faker*.
 

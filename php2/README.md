@@ -15,9 +15,9 @@ válido.
 
 # fraseImpares.php:
 Lee una frase y devuelve una nueva con solo los caracteres de las posiciones impares
-````php
+```php
 $frase = "Hola, como estas?";
-````
+```
 
 ![imagen](https://github.com/user-attachments/assets/3cd356c2-6120-4e7f-8392-dfb976608402)
 

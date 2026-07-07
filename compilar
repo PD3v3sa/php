@@ -11,7 +11,19 @@ archivo_origen="$1"
 archivo_destino="$2"
 
 # Comando de compilación con pandoc
-pandoc "$archivo_origen" -o "$archivo_destino" --from markdown --template ~/pandoc-latex-template-master/eisvogel.tex --listings -N --toc --variable urlcolor=cyan --filter pandoc-latex-environment
+#pandoc "$archivo_origen" -o "$archivo_destino" --from markdown  --template ~/pandoc-latex-template-master/eisvogel.tex --listings -N --toc --variable urlcolor=cyan --filter pandoc-latex-environment 
+  
+
+pandoc "$archivo_origen" -o "$archivo_destino" \
+  --from markdown \
+  --template ~/pandoc-latex-template-master/eisvogel.tex \
+  --metadata-file metadata.yaml \
+  --pdf-engine=xelatex \
+  --listings \
+  -N \
+  --toc \
+  --variable urlcolor=cyan \
+  --filter pandoc-latex-environment
 
 # Comprobar si la compilación fue exitosa
 if [ $? -eq 0 ]; then

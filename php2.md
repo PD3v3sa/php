@@ -1,72 +1,19 @@
 ---
 # Metainformació del document
-title: PHP 
+title: PHP
 titlepage: true
-subtitle: Uso de Funciones
+subtitle:   Uso de Funciones
 author:
-- Pepe
-lang: va
-
-# portada
-titlepage-rule-height: 2
-titlepage-rule-color: EE0000
-titlepage-text-color: EE0000
-titlepage-background: ../img/logo.png
-
-# configuració de l'índex
-toc: true
-toc-own-page: true
-toc-title: Continguts
-toc-depth: 2
-
-# capçalera i peu
-header-left: \thetitle
-header-right: Curs 2024-2025
-footer-left: IES Salvador Gadea
-footer-right: \thepage/\pageref{LastPage}
-
-# Les figures que apareguen on les definim i centrades
-float-placement-figure: H
-caption-justification: centering
-# No volem numerar les linies de codi
-listings-disable-line-numbers: true
-
-# Configuracions dels paquets de latex
-header-includes:
-# imatges i subfigures
-- \usepackage{graphicx}
-- \usepackage{subfigure}
-- \usepackage{lastpage}
-
-# caixes d'avisos
-- \usepackage{awesomebox}
-- \usepackage{lastpage}
-# text en columnes
-- \usepackage{multicol}
-- \setlength{\columnseprule}{1pt}
-- \setlength{\columnsep}{1em}
-
-page-background: ../img/agua.png
-page-background-opacity: 0.5
-
-
-# definició de les caixes d'avis
-pandoc-latex-environment:
-    noteblock: [note]
-    tipblock: [tip]
-    warningblock: [warning]
-    cautionblock: [caution]
-    importantblock: [important]
-
-
+- Pepe Devesa
 ...
+
 # Pròleg
 Al igual que en otros lenguajes de programación (como por ejemplo JavaScript), las funciones en PHP nos van a permitir encapsular un conjunto de instrucciones bajo un nombre, y poderlo ejecutar en bloque cada vez que lo necesitemos, simplemente utilizando el nombre que le hayamos puesto a la función.
 
 # Definición de funciones
 Para definir una función utilizaremos la instrucción `function`. Una función sólo podrá ser llamada desde el script donde fue declarada. En el siguiente ejemplo se define la función `mi_funcion`. Cada vez que la llamemos desde nuestro código se usará **echo** para añadir código HTML a la página devuelta al navegador:
 
-````php
+```php
 function mi_funcion()
 {
    echo '<strong>En la función</strong>';
@@ -75,7 +22,7 @@ function mi_funcion()
 ...
 
 mi_funcion(); //La llamada
-````
+```
 Notar que estos dos fragmentos de código pueden ir en bloques PHP diferentes. Por ejemplo, podemos definir las funciones al inicio del código PHP, y luego llamarlas después:
 
 ```php
@@ -91,23 +38,23 @@ function mi_funcion() {
 <?php 
     mi_funcion(); 
 ?>
-````
+```
 
 # Párametros
 
 Los parámetros son el mecanismo por el cual podemos pasarle información a una función, en forma de variables, a la hora de llamarla.
  Por ejemplo, esta función suma los dos datos (numéricos) que se le pasan como parámetros:
  
- ````php
+ ```php
  function suma($a, $b) { 
     echo $a + $b; 
 }
- ````
+ ```
  Y para utilizarla, simplemente la llamamos pasándole dos datos numéricos:
 
- ````php
+ ```php
 suma(2, 3);
- ````
+ ```
 
 :::tip
 
@@ -120,7 +67,7 @@ Crea una página llamada **contador.php**. Crea una función llamada `cuenta($a,
 
 Si queremos pasar un parámetro por referencia, parámetros que sean modificable, en la declaración de la función, indicaremos los parámetros mediante el operador `&` para indicar la dirección de memoria de la variable.
 
-````php
+```php
 <?php
 function duplicarPorValor($argumento) {
     $argumento = $argumento * 2;
@@ -149,7 +96,7 @@ echo "Después de llamar: $numero2.<br>";
 //Antes de llamar: 7.
 //Dentro de la función: 14.
 //Después de llamar: 14.
-````
+```
 :::tip
 
 **Ejercicio 2:** 
@@ -162,7 +109,7 @@ Crea una página llamada `intercambia.php`. Añade dentro una función llamada i
 
 Permiten asignar valores en la declaración, y posteriormente, dejar el argumento en blanco.
 
-````php
+```php
 <?php
 function saluda($nombre, $prefijo = "Sr") {
     echo "Hola ".$prefijo." ".$nombre;
@@ -172,14 +119,14 @@ saluda("Salvador", "Mr");
 saluda("Salvador");
 saluda("Marina", "Srta");
 
-````
+```
 La salida seria:
 
-````php
+```php
 Hola Mr Salvador
 Hola Sr Salvador
 Hola Srta Marina
-````
+```
 En el caso de convivir con otro tipo de parámetros, los parámetros que tienen el valor asignado por defecto siempre se colocan al **final**.
 
 ## Parámetros variables
@@ -191,7 +138,7 @@ Podemos tener funciones donde en la declaración no indiquemos la cantidad de da
 
 Estas funciones no se pueden pasar como parámetro a otra función (como funciones variable, que veremos más adelante). Para ello, debemos guardar previamente la función en una variable.
 
-````php
+```php
 <?php
 function sumaParametros() {
     if (func_num_args() == 0) {
@@ -209,9 +156,9 @@ function sumaParametros() {
 
 echo sumaParametros(1, 5, 9); // 15
 ?>
-````
+```
 Desde PHP 5.6, se puede utilizar el operador **... (variadics)** el cual "disfraza" los parámetros como un array:
-````php
+```php
 function sumaParametrosMejor(...$numeros) {
     if (count($numeros) == 0) {
         return false;
@@ -227,22 +174,22 @@ function sumaParametrosMejor(...$numeros) {
 }
 
 echo sumaParametrosMejor(1, 5, 9); // 15
-````
+```
 ## Type hinting 
 A pesar de que PHP es un lenguaje débilmente tipado (es decir, no tenemos que especificar de qué tipo de dato son las variables y parámetros que utilizamos), sí que permite indicar el tipo de dato en los parámetros y tipo de retorno de las funciones, si lo queremos, para "obligar" a que los datos que se pasen y recojan sean de esos tipos. 
 
-````php
+```php
 // Comprueba si dos números son iguales 
 function iguales(int $param1, int $param2): boolean 
 { 
     return $param1 === $param2; 
 }
-````
+```
 
 ## Funciones anónimas
 Igual que ocurre con otros lenguajes, como **JavaScript**, podemos definir funciones anónimas. Es decir, funciones sin nombre, que pueden asignarse a una variable, o utilizarse en un punto determinado del programa para invocarlas directamente. 
 
-````php
+```php
 <?php
 $anonima = function() {
     echo "Hola";
@@ -256,8 +203,10 @@ $anonimaConParametro("Salvador");
 
 ?>
 
-````
-Tenéis más información sobre funciones anónimas y flecha en el siguiente artículo (en inglés): [Funciones anónimas y flecha en PHP](https://code.tutsplus.com/anonymous-and-arrow-functions-in-php--cms-36725t)
+```
+Tenéis más información sobre funciones anónimas y flecha en el siguiente artículo (en inglés): 
+
+[Funciones anónimas y flecha en PHP](https://code.tutsplus.com/anonymous-and-arrow-functions-in-php--cms-36725t)
 
 # Biblioteca de funciones o Modularizando el código
 
@@ -285,17 +234,17 @@ function resta(int $a, int $b) : int {
 
 ```
 Y posteriormente en otro archivo:
-````php
+```php
 <?php 
     include_once("biblioteca.php");
     echo suma(10,20);
     echo resta(40,20);
 ?>
-````
+```
 ### Plantillas mediante `include`
 Mediante el uso de la instrucción include también podemos separar fragmentos de código PHP/HTML que queramos reutilizar en nuestros sitios web y crear un sistema muy sencillo de plantillas. Por ejemplo, vamos a separar una página en tres partes, primero la parte superior en `encabezado.php`:
 
-````php
+```php
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -304,18 +253,19 @@ Mediante el uso de la instrucción include también podemos separar fragmentos d
 <title><?= $titulo ?></title>
 </head>
 <body>
-````
+```
 La parte de abajo, por ejemplo, solo va a contener HTML y la colocamos en `pie.html`:
 
-````php
+```php
 <footer>IES Salvador Gadea. DWES</footer>
 </body>
 </html>
-`````
+```
 
 Y luego nos centramos únicamente en el contenido que cambia en `pagina.php`:
 
-````php
+```php
+
 <?php
 $titulo = "Página con includes";
 include("encabezado.php");
@@ -324,12 +274,11 @@ include("encabezado.php");
 <?php
 include("pie.html");
 ?>
-
-````
+```
 
 ## Separar la lógica de la presentación
 Cuando estamos programando, siempre tenemos que hacer que cada fichero, clase, función ... se encargue de una sola cosa. La más clara es separamos la lógica del programa (en nuestro caso en *php*) de la presentación al usuario (majoritariament con código *HTML*). Para poder separar estas dos funciones hacen falta sentencias anteriores para incluir ficheros.
-````php
+```php
 fruites.php
 <?php
 
@@ -338,8 +287,8 @@ $fruta = 'manzana';
 include('fruites.view.php')
 
 ?>
-`````
-````php
+````
+```php
 fruites.view.php
 
 <html>
@@ -352,7 +301,7 @@ fruites.view.php
  	</h3>		
 </body>
 </html>
-````
+```
 
 # Funciones predefinidas
 El lenguaje ofrece un abanico de funciones ya definidas, agrupadas por su funcionalidad: [https://www.php.net/manual/es/funcref.php](https://www.php.net/manual/es/funcref.php)
@@ -370,7 +319,7 @@ Algunas importantes son:
 
 * `strtolower` y `strtoupper`: Transforman una cadena de caracteres en la misma cadena en minúsculas o mayúsculas respectivamente.
 
-````php
+```php
 <?php
     $cadena = "El caballero oscuro";
     $tam = strlen($cadena);
@@ -383,14 +332,14 @@ Algunas importantes son:
 
     echo "Grande ".strtoupper($cadena);
 ?>
-````
+```
 Si queremos trabajar con caracteres ASCII de forma individual, son útiles las funciones:
 
 * `chr`: obtiene el carácter a partir de un ASCII
 
 * `ord`: obtiene el ASCII de un carácter
 
-````php
+```php
 <?php
     function despues(string $letra): string {
         $asciiLetra = ord($letra);
@@ -400,7 +349,7 @@ Si queremos trabajar con caracteres ASCII de forma individual, son útiles las f
     echo despues("B");
 ?>
 
-````
+```
 Si queremos **limpiar cadenas**, tenemos las funciones:
 
 * `trim`: elimina los espacios al principio y al final
@@ -409,14 +358,14 @@ Si queremos **limpiar cadenas**, tenemos las funciones:
 
 * `str_pad:` rellena la cadenas hasta una longitud especificada y con el carácter o caracteres especificados.
 
-````php
+```php
 <?php
     $cadena = " Programando en PHP ";
     $limpia = trim($cadena); // "Programando en PHP"
 
     $sucia = str_pad($limpia, 23, "."); // "Programando en PHP....."
 ?>
-````
+```
 ## Comparando y buscando
 La comparación de cadenas puede ser con conversión de tipos mediante `==` o estricta con `===`. También funcionan los operadores `< ` y `>` si ambas son cadenas. Al comparar cadenas con valores numericos podemos utilizar:
 
@@ -428,7 +377,7 @@ La comparación de cadenas puede ser con conversión de tipos mediante `==` o es
 
 * `strnatcmp`: comparaciones naturales
 
-````php
+```php
 <?php
     $frase1 = "Alfa";
     $frase2 = "Alfa";
@@ -447,20 +396,20 @@ La comparación de cadenas puede ser con conversión de tipos mediante `==` o es
     var_dump( strnatcmp($frase4, $frase5) ); // -1 => f4 < f5
 ?>
 
-````
+```
 Si lo que queremos es buscar **dentro de una cadena**, tenemos:
 
 * `strpos` / `strrpos`: busca en una cadena y devuelve la posición de la primera/última ocurrencia.
 * `strstr` / `strchr (alias)`: busca una cadena y devuelve la subcadena a partir de donde la ha encontrado
 * `stristr`: ignora las mayúsculas
-````php
+```php
 <?php
     $frase = "Quien busca encuentra, eso dicen, a veces";
     $pos1 = strpos($frase, ","); // encuentra la primera coma
     $pos2 = strrpos($frase, ","); // encuentra la última coma
     $trasComa = strstr($frase, ","); // ", eso dicen, a veces"
 ?>
-````
+```
 Si queremos averiguar **que contiene las cadenas**, tenemos un conjunto de funciones de comprobaciones de tipo, se conocen como las funciones ctype que devuelven un booleano:
 
 * `ctype_alpha` → letras
@@ -469,7 +418,7 @@ Si queremos averiguar **que contiene las cadenas**, tenemos un conjunto de funci
 * `ctype_punct` → caracteres de puntuación, sin espacios
 * `ctype_space` → son espacios, tabulador, salto de línea
 
-````php
+```php
 <?php
     $prueba1 = "hola";
     $prueba2 = "hola33";
@@ -484,7 +433,7 @@ Si queremos averiguar **que contiene las cadenas**, tenemos un conjunto de funci
     echo ctype_space($prueba5)."<br>"; // false
     echo ctype_space($prueba5[0])."<br>"; // true
 ?>
-````
+```
 
 ## Trabajando con subcadenas
 Si queremos romper las cadenas en trozos, tenemos:
@@ -493,7 +442,7 @@ Si queremos romper las cadenas en trozos, tenemos:
 * `implode(separador,array)` / `join`: pasa un array a cadena con un separador
 * `str_split(cadena,x)` / `chunk_split`: pasa una cadena a una array/cadena cada X caracteres
 
-````php
+```php
 <?php
     $frase = "Quien busca encuentra, eso dicen, a veces";
     $partes = explode(",", $frase);
@@ -515,12 +464,12 @@ Si queremos romper las cadenas en trozos, tenemos:
     $partes3array = str_split($frase, 3);
     // ["Qui", "en ", "bus", "ca ", "enc", …] 
 ?>
-````
+```
 
 * `substr_count`: número de veces que aparece la subcadena dentro de la cadena
 * `substr_replace`: reemplaza parte de la cadena a partir de su posición, y opcionalmente, longitud
 
-````php
+```php
 <?php
     $batman = "Bruce Wayne es Batman";
     $empresa = substr($batman, 6, 5); // Wayne
@@ -531,7 +480,7 @@ Si queremos romper las cadenas en trozos, tenemos:
     // Bruno es Batman
     $bruno = substr_replace($batman, "Bruno", 0, 11);
 ?>
-````
+```
 ## Funciones para manejo de fechas y horas 
 Existen algunas funciones que pueden sernos muy útiles para manejar fechas y horas, y poderlas procesar o almacenar correctamente en bases de datos. 
 
@@ -541,19 +490,19 @@ Existen algunas funciones que pueden sernos muy útiles para manejar fechas y ho
 
 * `date(formato, fecha)` obtiene una cadena de texto formateando la fecha con el formato indicado. Si no se indica ninguna fecha, se le aplicará el formato indicado a la fecha actual. Dentro del formato, podemos usar diferentes patrones, dependiendo del tipo de formato que queramos. Usaremos los símbolos d/D (para día numérico o con letra), m/M (para mes numérico o abreviado), y/Y (año de dos o cuatro dígitos), h/H (hora de 12 o 24 horas), i (minutos), s(segundos), y otras variantes que se pueden consultar en [https://www.php.net/manual/es/function.date.php](https://www.php.net/manual/es/function.date.php)
 
-````php
+```php
 $fechaActual = time(); 
 $textoFecha = date("d/m/Y H:i:s"); 
 // Suponiendo que $fechaActual sea, por ejemplo, el 3 de noviembre de 2014 
 // a las 18:23:55, entonces $textoFecha sería '03/11/2014 18:23:55' 
 $esCorrecta = checkdate(15, 11, 2014); 
 // La variable $esCorrecta sería FALSE, porque 15 no es un mes válido
-````
+```
 * `strtotime(texto)` convierte un texto que intenta representar una fecha en una fecha determinada. La fecha se representa en formato mes/día/año o mes-día-año, normalmente. Esta fecha sería incorrecta porque no existe el mes 21: 
 
-````php
+```php
 $fecha = strtotime("21/12/2013");  
-````
+```
 # Funciones de Fichero
 A veces nos puede resultar útil leer un fichero de texto o escribir información en él. Existen multitud de funciones en PHP para abrir un fichero, leerlo línea a línea, o leer o guardar un conjunto de bytes… Vamos a ver aquí sólo algunas de las funciones más útiles para manejo de ficheros.
 
@@ -564,7 +513,7 @@ A veces nos puede resultar útil leer un fichero de texto o escribir informació
 * `file_exists(fichero)` devuelve TRUE o FALSE dependiendo de si el fichero indicado existe o no.
 * `filesize(fichero)` devuelve el tamaño en bytes del fichero, o FALSE si no existe
 
-````php
+```php
 <?php
 $fichero = "libro.txt";
 if (file_exists($fichero))
@@ -574,23 +523,23 @@ if (file_exists($fichero))
 	file_put_contents($fichero, $contenido);
 }
 ?>
-````
+```
 La funcion `fopen()` desde PHP podemos abrir archivos que se encuentren en nuestros servidor o una URL.
 
 A esta función hay que pasarle 2 parámetros; el nombre del archivo que queremos abrir y el modo en el que se abrirá
 
 
-````php
+```php
 $fp = fopen("miarchivo.txt", "r");
-`````
+````
 
 Muchas veces no podemos abrir el archivo porque éste no se encuentra o no tenemos acceso a él, por eso es recomendable comprobar que podemos hacerlo
 
-````php
+```php
 if (!$fp = fopen("miarchivo.txt", "r")){
     echo "No se ha podido abrir el archivo";
 }
-````
+```
 
 Modos de apertura de ficheros
 
@@ -606,31 +555,67 @@ Modos de apertura de ficheros
 * `c+:` Apertura para lectura y escritura. Mismo comportamiento que C.
 * `b:` Cuando se trabaja con archivos binarios como jpg, pdf, png y demás. Se suele colocar al final del modo, es decir rb, r+b, x+b, wb...
 
+## Leer Ficheros
+Para leer el contenido de un fichero, puedes usar varias funciones en PHP. La más común es fgets,
+que lee una línea completa del fichero.
+```php
+if (!$fp = fopen("miarchivo.txt", "r")){
+echo "No se ha podido abrir el archivo";
+}else{
+while(!feof($fp)) { $linea = fgets($fp);
+echo $linea;
+}
+}
+fclose($archivo);
+```
+También puedes usar fread para leer una cantidad específica de bytes.
+
+## Escribir Ficheros
+Para escribir en un fichero, utiliza la función fwrite. Debes abrir el fichero en modo de escritura antes
+de usar esta función.
+```php
+$archivo = fopen("miarchivo.txt", "w");
+fwrite($archivo, "Este es un texto de ejemplo.");
+fclose($archivo);
+```
+
+Ten en cuenta que si el fichero ya existe, fwrite sobrescribirá su contenido. Si deseas agregar contenido
+al final del fichero, puedes abrirlo en modo «a» (append).
+
 # Ejercicios
 
-### parametrosVariables.php
+:::box
+**parametrosVariables.php**
 
 Crea las siguientes funciones:
 
 Una función que devuelva el mayor de todos los números recibidos como parámetro variables: 
 
 *function mayor(): int*. Utiliza las funciones *func_get_args()*, *etc*... 
-**No puedes usar la función max()**.
 
-### comprueba_hora.php (Separar la lógica de la vista)
+**No puedes usar la función max()**.
+:::
+
+:::box
+**comprueba_hora.php (Separar la lógica de la vista)**
 
 Crea una variable de texto con una hora en ella (por ejemplo, *"21:30:12"*), y luego procésala para extraer por separado la hora, el minuto y el segundo, y comprobar si es una hora válida. 
 Por ejemplo, la hora anterior sí debería ser válida, pero si ponemos *"12:63:11"* no debería serlo, porque 63 no es un minuto válido.
+:::
+:::box
+**matematicas.php**
 
-### matematicas.php: 
 Añade las siguientes funciones:
 
 * `digitos(int $num): int` → devuelve la cantidad de dígitos de un número.
 * `digitoN(int $num, int $pos): int` → devuelve el dígito que ocupa, empezando por la izquierda, la posición $pos.
 * `quitaPorDetras(int $num, int $cant): int` → le quita por detrás (derecha) $cant dígitos.
 * `quitaPorDelante(int $num, int $cant): int` → le quita por delante (izquierda) $cant dígitos.
+:::
 
-### login.php
+:::box
+**login.php**
+
 Vamos a simular un formulario de acceso:
 
 `login.php:` el formulario de entrada, que solicita el usuario y contraseña.
@@ -639,13 +624,19 @@ Vamos a simular un formulario de acceso:
 **ok.php:** El usuario introducido es correcto
 
 **ko.php:** El usuario es incorrecto. Informar si ambos están mal o solo la contraseña. Volver a mostrar el formulario de acceso.
+:::
 
 ## Funciones Predefinidas
 
-### fraseImpares.php: 
-Lee una frase y devuelve una nueva con solo los caracteres de las posiciones impares.
+:::box
+**fraseImpares.php** 
 
-### analizador.php: 
+Lee una frase y devuelve una nueva con solo los caracteres de las posiciones impares.
+:::
+
+:::box
+**analizador.php**
+
 A partir de una frase con palabras sólo separadas por espacios, devolver:
 
 * Letras totales y cantidad de palabras
@@ -653,19 +644,38 @@ A partir de una frase con palabras sólo separadas por espacios, devolver:
 * Una línea por cada palabra indicando su tamaño
 
 `Nota:` no se puede usar str_word_count
+:::
 
-### analizadorWC.php: 
+:::box
+**analizadorWC.php**
+
 Investiga que hace la función str_word_count, y vuelve a hacer el ejercicio.
+:::
 
-### cani.php: 
+:::box
+**cani.php**
+
 `EsCrIbE uNa FuNcIóN qUe TrAnSfOrMe UnA cAdEnA eN cAnI.`
+:::
 
-### palindromo.php: 
+:::box
+**palindromo.php**
+
 Escribe una función que devuelva un booleano indicando si una palabra es palíndroma (se lee igual de izquierda a derecha que de derecha a izquierda, por ejemplo, `"ligar es ser agil"`).
+:::
 
-### CasasRuralesTelefonos.php
-Crea un programa llamado `CasasRuralesTelefonos.php` que cargue los datos de este archivo CSV de casas rurales de la provincia de Castellón. Queremos quedarnos con el *id*, *localidad*, *nombre* y *telefono* de las casas rurales que tengan un *teléfono definido*, descartando el resto. 
+:::box
+**CasasRuralesTelefonos.php**
+
+Crea un programa llamado `CasasRuralesTelefonos.php` que cargue los datos de este archivo CSV de casas rurales de la provincia de Castellón. 
+
+Queremos quedarnos con el *id*, *localidad*, *nombre* y *telefono* de las casas rurales que tengan un *teléfono definido*, descartando el resto. 
+
 El programa debe mostrar por pantalla el listado final procesado, y cuántas casas rurales *se han descartado* por tener datos nulos. 
+:::
 
-### plantillas.php
+:::box
+**plantillas.php**
+
 Con el fichero `plantillas.csv` muestra en un tabla HTML la plantilla del Atlético de Madrid ordenada por dorsal.
+:::

@@ -1,65 +1,12 @@
 ---
 # Metainformació del document
-title: PHP 
+title: PHP
 titlepage: true
-subtitle: Elementos básicos del lenguaje
+subtitle:   Elementos básicos del lenguaje
 author:
-- Pepe
-lang: va
-
-# portada
-titlepage-rule-height: 2
-titlepage-rule-color: EE0000
-titlepage-text-color: EE0000
-titlepage-background: ../img/logo.png
-
-# configuració de l'índex
-toc: true
-toc-own-page: true
-toc-title: Continguts
-toc-depth: 2
-
-# capçalera i peu
-header-left: \thetitle
-header-right: Curs 2024-2025
-footer-left: IES Salvador Gadea
-footer-right: \thepage/\pageref{LastPage}
-
-# Les figures que apareguen on les definim i centrades
-float-placement-figure: H
-caption-justification: centering
-# No volem numerar les linies de codi
-listings-disable-line-numbers: true
-
-# Configuracions dels paquets de latex
-header-includes:
-# imatges i subfigures
-- \usepackage{graphicx}
-- \usepackage{subfigure}
-- \usepackage{lastpage}
-
-# caixes d'avisos
-- \usepackage{awesomebox}
-- \usepackage{lastpage}
-# text en columnes
-- \usepackage{multicol}
-- \setlength{\columnseprule}{1pt}
-- \setlength{\columnsep}{1em}
-
-page-background: ../img/agua.png
-page-background-opacity: 0.5
-
-
-# definició de les caixes d'avis
-pandoc-latex-environment:
-    noteblock: [note]
-    tipblock: [tip]
-    warningblock: [warning]
-    cautionblock: [caution]
-    importantblock: [important]
-
-
+- Pepe Devesa
 ...
+
 # Pròleg
 ```php
 <?php
@@ -120,7 +67,7 @@ Opcionalmente, en el caso de que sólo tengamos instrucciones `echo` , podemos s
 
 ```php
 <p>El autor de esta página es <?= $nombre; ?> y está realizada en el año <?= $anyo; ?>.</p>
-````
+```
 
 También podemos utilizar indistintamente la instrucción `print` en lugar de `echo` para mostrar información por pantalla.
 
@@ -176,13 +123,13 @@ Ejemplos de nombres de variables válidos son: `$nombre` , `$primer_apellido` , 
 ## Variables variables
 Una peculiaridad de PHP es la posibilidad de disponer de variables de tipo variable. Por ejemplo, en el siguiente código:
 
-````php
+```php
 $varname = 'barras';
 $$varname = 5; // Equivale a $barras = 5
-````
+```
 ¿Qué utilidades puede tener esto? El bilingüismo
 
-````php
+```php
 <?php
     $texto_va = "Benvingut";
     $texto_en = "Welcome";
@@ -190,7 +137,7 @@ $$varname = 5; // Equivale a $barras = 5
     $texto = "texto_" . $idioma;
     echo $$texto;
 ?>
-````
+```
 :::tip
 Ejercicio 4:
 
@@ -204,13 +151,13 @@ Es posible que, en algún momento de la ejecución del programa, una variable no
 * `isset($variable)` permite comprobar si una variable existe
 * `empty($variable)` permite comprobar si una variable está vacía, es decir, no tiene un valor concreto asignado.
 
-````php
+```php
 if (isset($nombre)) {
     echo $nombre;    // Solo muestra el nombre si la variable tiene algún valor
 } else {
     echo "El nombre no está definido";
 }
-````
+```
 ```php
     <?php
         $dato="Hola";
@@ -285,7 +232,7 @@ Por ejemplo, si almacenamos el número _pi_, ese valor siempre va a ser el mismo
 Para definir constantes en PHP se utiliza la función `define` , y entre paréntesis pondremos el nombre que le damos a la constante (entre comillas), y el valor que va a tener, separados ambos datos por coma. Después, para utilizar la constante más adelante, usamos el nombre que le hemos dado, pero sin las comillas. Veamos
 este ejemplo que calcula la longitud de una circunferencia:
 
-````php
+```php
 
     <?php
         define('PI', 3.1416);
@@ -298,7 +245,7 @@ este ejemplo que calcula la longitud de una circunferencia:
 
        
     ?>
-````
+```
 
 Aunque **no es obligatorio**, sí es bastante convencional que las constantes tengan todo su **nombre en mayúsculas**, para distinguirlas a simple vista de las variables (aunque, además, las variables en PHP empiezan por un dólar, y las constantes no).
 
@@ -487,18 +434,18 @@ Intenta predecir qué resultado va a sacar por pantalla cada instrucción echo d
 ## Estructuras selectivas
 ### if 
 Las estructuras de control de PHP tienen una sintaxis alternativa que elimina el uso de las llaves, muy denostadas por algunos programadores. Por ejemplo, una instrucción if puede escribirse de forma tradicional:
-````php
+```php
 if ($i < 0) {
     echo "La variable es menor que cero";
 }
-````
+```
 …o bien con la "sintaxis dos puntos":
 
-````php
+```php
 if ($i < 0):
     echo "La variable es menor que cero";
 endif;
-````
+```
 Puedes elegir la sintaxis con la que te sientas más cómodo/a
 ### if..else
 A veces nos interesa realizar una operación si se cumple una determinada condición y no hacerla (o hacer otra distinta) si no se cumple esa condición. Por ejemplo, si está vacía una variable querremos hacer una cosa, y si no lo está, hacer otra. Para decidir entre varios caminos a seguir en función de una determinada condición, al igual que en otros lenguajes como Javascript, Java o C, se utiliza la estructura **if..else**
@@ -688,27 +635,29 @@ Como el tipado es dinámico, nuestros arrays pueden contenedor datos de diferent
 ## Arrays numéricos
 Estos arrays podemos crearlos de tres formas posibles: 
 * Indicando entre paréntesis sus elementos, y anteponiendo la palabra `array`
-````php
+```php
 $tabla = array('Uno', 'Dos', 'Tres');
-```` 
+``` 
 * Indicando a mano el índice que queremos rellenar, y el valor que va a tener (los índices intermedios que queden sin valor se quedarán como huecos vacíos) 
-````php
+```php
 $tabla[0] = 'Uno'; 
 $tabla[1] = 'Dos'; 
 $tabla[2] = 'Tres'; 
-````
+```
 * Indicando el nombre del array con corchetes vacíos cada vez que queramos añadir un elemento. Así, se añade al final de los que ya existen:
-````php
+
+```php
 $tabla[] = 'Uno'; 
 $tabla[] = 'Dos'; 
 $tabla[] = 'Tres'; 
-````
-Después, para sacar por pantalla algún valor, o usarlo en alguna expresión, pondremos el nombre del array y, entre corchetes, la posición que queremos: 
-````php
+```
+Después, para sacar por pantalla algún valor, o usarlo en alguna expresión, pondremos el nombre del array y, entre corchetes, la posición que queremos:
+
+```php
 echo $tabla[1];  // Sacaría 'Dos' en los casos anteriores
-````
+```
 Otros Ejemplos...
-````php
+```php
 <?php
 $frutas = array("naranja", "pera", "manzana");
 
@@ -718,28 +667,32 @@ $frutas3 = [];
 $frutas3[0] = "naranja";
 $frutas3[1] = "pera";
 $frutas3[] = "manzana"; // lo añade al final
-
-````
+```
 ## Arrays asociativos
-En este caso, al crear el array debemos indicar, además de cada valor, la clave que le vamos a asociar, y por la que lo podemos encontrar, separados por el símbolo "=>". 
+
+En este caso, al crear el array debemos indicar, además de cada valor, la clave que le vamos a asociar, y por la que lo podemos encontrar, separados por el símbolo **"=>"**. 
 Por ejemplo, este array guarda para cada nombre de alumno su nota:
-````php
+
+```php
 $notas = array('Manuel García'=>8.5, 'Ana López'=>7, 'Juan Solís'=>9); 
-````
+```
 También podemos rellenarlo, como en el caso anterior, indicando entre corchetes cada clave, y luego su valor: 
-````php
+
+```php
 $notas['Manuel García'] = 8.5; 
 $notas['Ana López'] = 7; 
 ... 
-````
+```
 Después, si queremos sacar la nota del alumno Manuel García, por ejemplo, pondremos algo como: 
-````php
+
+```php
 echo $notas['Manuel García']; 
-`````
+```
 En este tipo de arrays no podremos usar índices numéricos, porque no hay posiciones numéricas.
 
 A la hora de recorrer este tipo de arrays, mediante foreach separamos cada elemento en una pareja clave => valor:
-````php
+
+```php
 <?php
 $capitales = ["Italia" => "Roma",
               "Francia" => "Paris",
@@ -761,8 +714,9 @@ foreach ($capitales as $pais => $ciudad) { // separamos cada elemento en clave =
     echo "$pais : $ciudad <br />";
 }
 
-````
+```
 ##  Arrays multidimensionales
+
 Los arrays creados anteriormente son unidimensionales (sólo hay una lista o fila de elementos). Pero podemos tener tantas dimensiones como queramos. Es habitual encontrarnos con arrays bidimensionales (tablas), para almacenar información. En este caso, tendremos un corchete para cada dimensión. Por ejemplo, para crear una tabla como la siguiente...
 
 |||
@@ -771,31 +725,33 @@ Los arrays creados anteriormente son unidimensionales (sólo hay una lista o fil
 |36,4|150|
 |33,5|155|
 ... necesitaremos un código como este:
-````php
+```php
 $tabla[0][0] = 34.1; 
 $tabla[0][1] = 141; 
 $tabla[1][0] = 36.4; 
 $tabla[1][1] = 150; 
 $tabla[2][0] = 33.5; 
 $tabla[2][1] = 155; 
-````
+```
 ### Arrays multidimensionales de tipo asociativo
+
 Donde algunas dimensiones son numéricas y otras asociativas. Por ejemplo:
-````php
+```php
 $productos = array(
 array('BAR', 'Barras', 1),
 array('ENS', 'Ensaimadas', 3),
 array('NAP', 'Napolitanas',2)
 );
-````
+```
 Para acceder a un elemento cualquiera del array anterior usamos índices numéricos. 
 Por ejemplo, para acceder al nombre (segundo campo, índice 1) del tercer producto (tercera posición en el array, índice 2), teclearíamos lo siguiente:
 
-````php
+```php
 $productos[2][1]; 
-````
+```
 Por supuesto también sería posible disponer de una matriz multidimensional indexada asociativamente, como la del siguiente ejemplo:
-````php
+
+```php
 $tabla2 =  array( 
     array('nombre' => 'Juan García', 
           'dni'=> '11111111A', 
@@ -804,18 +760,19 @@ $tabla2 =  array(
           'dni' => '22222222B', 
           'idiomas' => array('francés', 'español')     ) 
           ); 
-````
+```
 Podríamos mostrar el segundo idioma hablado por la segunda persona con:
-````php
+```php
 echo $tabla2[1]['idiomas'][1]; 
-````
+```
 Podemos crear igualmente estos arrays usando corchetes, definiendo lo que queremos en cada dimensión:
-````php
+
+```php
 $tabla2[0]['nombre'] = 'Juan García'; 
 $tabla2[0]['dni'] = '11111111A'; 
 $tabla2[0]['idiomas'][0] = 'inglés'; 
 $tabla2[0]['idiomas'][1] = 'valenciano'; 
-````
+```
 ## Funciones para arrays
 PHP dispone de varias funciones útiles a la hora de manipular arrays. Algunas de las más habituales son:
 
@@ -855,21 +812,24 @@ PHP dispone de varias funciones útiles a la hora de manipular arrays. Algunas d
 
 * `list(var1,var2,...)` asigna los elementos del array a las variables.
 
-````php
+```php
     <?php
         $my_array = array("Dog","Cat","Horse");
 
         list($a, $b, $c) = $my_array;
         echo "I have several animals, a $a, a $b and a $c.";
     ?>
-````
+```
 :::note
 
    Artículos para profundizar en el uso de arrays
    
-   * Un artículo muy completo (en inglés) de [Cómo trabajar con arrays en PHP de la manera correcta.](https://code.tutsplus.com/working-with-php-arrays-in-the-right-way--cms-28606t)
+   * Un artículo muy completo (en inglés) 
    
-   * Otro artículo recomendable (en inglés) es [Cómo ordenar arrays en PHP](https://code.tutsplus.com/how-to-sort-arrays-in-php--cms-32313t)
+    * [Cómo trabajar con arrays en PHP de la manera correcta.](https://code.tutsplus.com/working-with-php-arrays-in-the-right-way--cms-28606t)
+   
+   * Otro artículo recomendable (en inglés) es 
+    * [Cómo ordenar arrays en PHP](https://code.tutsplus.com/how-to-sort-arrays-in-php--cms-32313t)
 
 :::
 
@@ -883,23 +843,23 @@ En ocasiones podemos hacer operaciones o utilizar funciones que pueden provocar 
 
 Cuando se antepone el símbolo de arroba @ ante cualquier expresión, cualquier mensaje de error que pueda generar esa expresión será ignorado.
 
-````php
+```php
 $division = @($num1/$num2);
-````
+```
 
-````php
+```php
 <?php
 $miArchivo = @file('archivo_que_no_existe') or die("No se ha podido abrir");
 
 // Funciona también si por ejemplo se intenta acceder al key de un array que no existe:
 $valor = @$array[$key] or die("No se ha podido abrir");
 ?>
-````
+```
 ## Uso de excepciones
 
 Vamos a ver un ejemplo sencillo con una función que calcula el área de un cuadrado:
 
-````php
+```php
 $miLado = -3;
 function areaCuadrado($lado){
     if ($lado < 0){
@@ -911,10 +871,10 @@ function areaCuadrado($lado){
 }
 areaCuadrado($miLado);
 // Devuelve: Uncaught exception 'Exception' with message 'Debes insertar un número positivo'
-````
+```
 Hemos lanzado una `excepción` y el código detiene su ejecución ya que se produce un `error fatal`. Podemos en cambio capturar ese error y continuar con el script:
 
-````php
+```php
 // Definimos un array con los lados de los cuadrados que queremos calcular
 $misLados = array(2, -6, 4);
 // Creamos un loop para calcular el área de cada cuadrado
@@ -931,12 +891,12 @@ El área del cuadrado es: 4
 Ha habido una excepción: Debes insertar un número positivo
 El área del cuadrado es: 16
 */
-````
+```
 Ahora en lugar de parar el script, continúa y captura la excepción.
 
 También podemos usar la instrucción `throw new Exception($mensaje)` para provocar una excepción en el caso de que alguna comprobación que hagamos nos dé un resultado incorrecto. Así provocamos un `salto al catch`, o un mensaje de error en la web si no lo hacemos dentro de un try. Se utiliza también para algunas funciones que no provocan excepciones por sí mismas (como por ejemplo, file_get_contents), para provocar el error nosotros de antemano con alguna comprobación previa.
 
-````php
+```php
 try
 {
     if (!file_exists("fich1.txt"))
@@ -948,7 +908,7 @@ try
 } catch (Exception $e) {
     echo 'Se ha producido un error: ' . $e->getMessage();
 }
-````
+```
 # Ejercicios con arrays
 
 :::important
