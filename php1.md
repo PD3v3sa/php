@@ -257,6 +257,7 @@ XX.XX será el resultado de calcular el área.
 
 ## Operaciones
 Podemos realizar distintos tipos de operaciones con los datos que manejamos en PHP: aritméticas, comparaciones, asignaciones, etc. Veremos los operadores que podemos utilizar en cada caso.
+
 ## Operadores aritméticos
 
 Son las operaciones matemáticas básicas (sumar, restar, multiplicar...). Los operadores para llevarlas a cabo son:
@@ -380,7 +381,7 @@ El operador de negación invierte el sentido de una comprobación (si era verdad
 ```php
 echo !($edad >= 18);
 ```
-### Precedencia de operadores
+## Precedencia de operadores
 
 ¿Qué ocurre si tenemos varios operadores de distintos tipos en una misma expresión? PHP sigue un orden a la hora de evaluarlos:
 
